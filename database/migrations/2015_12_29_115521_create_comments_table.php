@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +12,16 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function(Blueprint $table) {
+        Schema::create('comments', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('title', 200);
-            $table->string('locaction', 200);
             $table->text('content');
-            $table->float('lat', 8, 5);
-            $table->float('lng', 8, 5);
-            $table->string('url', 500)->nullable();
+            $table->smallInteger('position');
             $table->smallInteger('up');
-            $table->smallInteger('score');
+            $table->smallInteger('down');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('post_id')->unsigned();
+            $table->foreign('post_id')->references('id')->on('posts');
             $table->timestamps();
         });
     }
@@ -35,6 +33,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('posts');
+        Schema::drop('comments');
     }
 }
