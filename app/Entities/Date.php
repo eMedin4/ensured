@@ -4,7 +4,7 @@ namespace Ensured\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Postvote extends Model
+class Date extends Model
 {
-    //
+    public $timestamps = false;
 }
