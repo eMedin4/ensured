@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title', 200);
-            $table->string('locaction', 200);
+            $table->string('location', 200);
             $table->text('content');
             $table->float('lat', 8, 5);
             $table->float('lng', 8, 5);
