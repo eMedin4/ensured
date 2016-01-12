@@ -14,25 +14,18 @@ class UserTableSeeder extends BaseSeeder
 	public function getDummyData($faker, array $customValues = array())
 	{
 		return [
-			'name' => $faker->userName,
-			'email' => $faker->unique()->email,
+			'name' => 'hola',
+			'email' => 'elme79@gmail.com',
 			'password' => bcrypt('secret')    		
     	];
 	}
 
     public function run()
     {
-    	$this->createAdmin();
-    	$this->createMultiple(10);
+
+    	$this->createMultiple(1);
     }
 
-    private function createAdmin()
-    {
-    	$this->create([
-    			'name' => 'eMedin4',
-    			'email' => 'elannmedina@gmail.com',
-    			'password' => bcrypt('admin')
-    		]);
-    }
+
 
 }

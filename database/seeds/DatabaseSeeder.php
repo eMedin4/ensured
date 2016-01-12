@@ -26,12 +26,7 @@ class DatabaseSeeder extends Seeder
     		]);
 
         $this->call(UserTableSeeder::class);
-        $this->call(PostTableSeeder::class);
-        $this->call(PostvoteTableSeeder::class);
-        $this->call(CommentTableSeeder::class);
-        $this->call(CommentvoteTableSeeder::class);
-        $this->call(DateTableSeeder::class);
-        $this->call(PostTagTableSeeder::class);
+
     }
 
     private function truncateTables(array $tables)
