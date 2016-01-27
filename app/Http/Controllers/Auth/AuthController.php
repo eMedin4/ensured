@@ -2,7 +2,7 @@
 
 namespace Ensured\Http\Controllers\Auth;
 
-use Ensured\User;
+use Ensured\Entities\User;
 use Validator;
 use Ensured\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -28,7 +28,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new authentication controller instance.

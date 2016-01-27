@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', [
-	'as' => 'main',
-	'uses' => 'PostController@main'
-	]);
+
+
+
+
 
 
 
@@ -30,12 +30,35 @@ Route::get('/', [
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
+
 
 Route::group(['middleware' => 'web'], function () {
+
     Route::auth();
 
-    Route::get('/home', 'HomeController@index');
+    Route::get('/', 
+    	['as' => 'main', 'uses' => 'PostController@main']);
+
+    Route::get('score', 
+    	['as' => 'score', 'uses' => 'PostController@score']);
+
+    Route::get('/{id}/{title}', 
+    	['as' => 'single', 'uses' => 'PostController@single']);
+
+    Route::post('votarpost/{id}', 
+    	['as' => 'postvote', 'uses' => 'VoteController@postvote']);
+    
+});
+
+Route::group(['middleware' => ['web', 'auth']], function () {
+
+    Route::get('nuevo', 
+    	['as' => 'create', 'uses' => 'PostController@create']);
+
+    Route::post('nuevo', 
+    	['as' => 'store', 'uses' => 'PostController@store']);
+
+    Route::post('comentar/{id}', 
+    	['as' => 'comment', 'uses' => 'CommentController@store']);
+
 });

@@ -10,6 +10,6 @@ class Commentvote extends Model
 
     public function comment()
     {
-    	return $this->belongsTo('Comment');
+    	return $this->belongsTo(Comment::class);
     }    
 }

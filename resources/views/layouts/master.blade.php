@@ -8,10 +8,16 @@
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
 </head>
 
-<body>
+<body class="@yield('bodyclass', '')">
 
 @yield('content')
 
 <script src="{{ asset('/assets/js/scripts.js') }}"></script>
+<!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCod6UGQqYXibHSelQvfkQ5TN7K6k0xK0Q&libraries=places"></script>
+<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js"></script>
+ -->
+<script src="{{ asset('/assets/js/map.js') }}"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCod6UGQqYXibHSelQvfkQ5TN7K6k0xK0Q&callback=initMap">
+</script>
 </body>
 </html>

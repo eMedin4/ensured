@@ -2,7 +2,7 @@
 
 @section('content')
 
-@include('includes.menu')
+@include('includes.header')
 
 	<h1>You are logged in!</h1>
 	<h2>{{ Auth::user()->name }}</h2>

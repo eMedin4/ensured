@@ -2,7 +2,7 @@
 
 @section('title', 'esto es el main')
 
-@section('bodyclass', 'mainpage')
+@section('bodyclass', 'singlepage')
 
 @section('content')
 
@@ -15,19 +15,14 @@
 		</div>
 
 		<div class="half-right">
-			<h1> {{ $title }} </h1>
 
-			<h2> Total de posts: {{ $posts->total() }} </h2>
+			<h1> Esto es el single </h1>
 
-			@foreach($posts as $post)
-				@include('includes.articlelist')
-			@endforeach
+			@include('includes.articlesingle')
 
-			{!! $posts->render() !!}
 		</div>
 
 	</div>
 
-	
 
 @endsection

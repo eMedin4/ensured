@@ -2,7 +2,7 @@
 
 @section('content')
 
-@include('includes.menu')
+@include('includes.header')
 
 <div>Register</div>
 
