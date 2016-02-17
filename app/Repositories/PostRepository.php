@@ -2,6 +2,7 @@
 
 namespace Ensured\Repositories;
 
+use DB;
 use Ensured\Entities\Post;
 
 class PostRepository {
@@ -12,17 +13,30 @@ class PostRepository {
             'posts.*, '
             . '(SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) as num_comments, '
             . '(SELECT COUNT(*) FROM postvotes WHERE postvotes.post_id = posts.id) as num_votes'
-            )->with('user');
-            //eager loading: with user: user es el metodo de relacion del modelo post
+            )->with(['user', 'dates' => function ($query) {
+                $query->orderBy('date', 'asc');
+            }]);
     }
 
-    public function paginateScored()
+    public function paginateMain()
     {
 
     	return $this->selectPostsList()
         ->orderBy('score', 'DESC')
-        ->paginate(3);
+        ->paginate(10);
 
+    }
+
+    public function time($where)
+    {
+        return $this->selectPostsList()
+            ->whereExists(function($query) use ($where) {
+                $query->select(DB::raw(1))
+                    ->from('dates')
+                    ->whereRaw("$where AND dates.post_id = posts.id");
+            })
+            ->orderBy('score', 'DESC')
+            ->paginate(10);
     }
 
     public function paginateMaxScored()
@@ -30,7 +44,7 @@ class PostRepository {
     	return $this->selectPostsList()
             ->where('score', '>', 200)
             ->orderBy('score', 'DESC')
-            ->paginate(3);
+            ->paginate(10);
     }
 
     public function single($id)

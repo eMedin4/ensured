@@ -3,9 +3,12 @@
 namespace Ensured\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Ensured\Traits\RecordsActivity;
 
 class Comment extends Model
 {
+
+    use RecordsActivity;
 
     protected $fillable = [
         'content'

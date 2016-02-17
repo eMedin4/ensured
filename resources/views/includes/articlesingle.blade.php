@@ -1,42 +1,65 @@
+<article class="pb40">
 
-<h2><a href="{{ route('single', ['id' => $post, 'title' => $post->slug]) }}">{{ $post->title }}</a></h2>
-<h3>{{ $post->location }}</h3>
-<p>{{ $post->content }}</p>
-<h5>
-	<strong>up:</strong>
-	{{$post->up}}
-	<strong>score:</strong>
-	{{$post->score}}
-</h5>
+	@include('partials.votes')
 
-<h5>
+	{{-- title --}}
+	<h1 class="pb10">
+			{{ $post->title }}
+	</h1>
 
-	{{ $post->created_at->format('d/m/y h:ia') }}
+	{{-- url and tags --}}
+	<div class="post-more pb5">
+		@if ( $post->url )
+			<h3 class="url pr10">
+				<a href="{{ $post->url }}" target="_blank" rel="nofollow">
+					<img src="http://www.google.com/s2/favicons?domain={{ $post->url }}">
+					{{ $post->urldomain }}
+				</a>
+			</h3>
+		@endif
 
-	{{ $post->user->name }}
-</br>
+		@if (!$post->tags->isEmpty())
+			<h3 class="show-tags">
+				<span class="normal-weight"> En: </span>
+				@foreach($post->tags as $tag)
+					<span class="tag">{{ $tag->name }}</span>
+				@endforeach
+			</h3>
+		@endif
+	</div>
+
+	<div class="mini-sub-line"></div>
+
+	{{-- content --}}
+	<p class="pb10">{{ $post->content }}</p>
+
+	{{-- meta --}}
+	<h3 class="meta pb10">
+		<i class="fa fa-calendar-blank"></i>
+		<span class="pr10">
+			@include('partials.dates')
+		</span>
+		<i class="fa fa-location-arrow-outline"></i>
+		<span>
+			{{ $post->location }}
+		</span>
+	</h3>
+
+	<h3 class="grey pb10 block">
+		Publicado
+		<span class="post-time">{{ $post->created_at->diffForHumans() }}</span>
+		por
+		<a href="#" class="username">{{ $post->user->name }}</a>		
+	</h3>
+
+	<div class="sub-line"></div>
 
 
-<hr>
-<h2> Votos: {{ count($post->postvotes) }}. Votantes: </h2>
-	{{-- podria ser tambien {{ $post->postvotes()->count() }} --}}
 
-{{--
-@foreach($post->postvotes as $voters)
 
-	<span>{{$voters->user->name}} </span>
 
-@endforeach
---}}
-@if ( true)
-{!! Form::open(['route' => ['postvote', $post->id]]) !!}
-	<button type="submit">Votar</button>
-{!! Form::close() !!}
-@else
-Ya has votado
-@endif
 
-<hr>
+
 <h2> Comentarios <span>total: {{ count($post->comments) }} </h2>
 
 Comentar
@@ -51,13 +74,23 @@ Comentar
 
 @foreach($post->comments as $comment)
 <div>
-<p> {{$comment->content}} </p>
-<div> {{$comment->user->name}} </div>
-{{-- Si tubiese un campo opcional, para mostrarlo: 
-	@if ($comment->link) ...
-
-	--}}
-<h5>{{$comment->created_at->format('d/m/Y h:ia')}}</h5>
+<p> {{ $comment->content }} </p>
+<h3 class="grey">
+	Escrito
+	<span>{{ $comment->created_at->diffForHumans() }}</span>
+	por
+	<a href="#" class="username"> {{ $comment->user->name }} </a>
+	<span class="vote-comment">
+		<span class="vote-comment-up inline-block">
+			0
+			<i class="fa fa-triangle-up"></i>
+		</span>
+		<span class="vote-comment-down inline-block">
+			0
+			<i class="fa fa-triangle-down"></i>
+		</span>
+	</span>
+</h3>
 
 </div>
 <br>
@@ -77,7 +110,7 @@ Comentar
 @endif
 
 
-{!! Form::open(['route' => ['comment', $post->id]]) !!}
+{{-- {!! Form::open(['route' => ['comment', $post->id]]) !!}
 
 	{!! Form::label('comment', 'Comentario') !!}
 	{!! Form::textarea('content', null, [
@@ -88,4 +121,11 @@ Comentar
 
 	<button type="submit" class="">Enviar</button>
 
-{!! Form::close() !!}
+{!! Form::close() !!} --}}
+
+{{-- <h5>
+	<strong>up:</strong>
+	{{$post->up}}
+	<strong>score:</strong>
+	{{$post->score}}
+</h5> --}}

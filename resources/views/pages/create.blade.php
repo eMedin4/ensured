@@ -2,36 +2,50 @@
 
 @section('title', 'esto es el create')
 
+@section('bodyclass', 'createpage')
+
 @section('content')
 
-	@include('includes.header')
+<div class="content content-limit">
 
-	<h1> Formulario de creación </h1>
+	<div class="limit p40">
 
-	@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <strong>Oops!</strong> Por favor corrige los errores debajo:<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-	@endif
+		<h1 class="big-title pb5"> Añade tu contenido </h1>
 
-	{!! Form::open(['route' => 'create']) !!}
+		<p class="sub-line">Tu publicación debe contener un qué, un cuándo y un dónde. Para ello debes indicar un título y descripción, una fecha y un lugar. Una vez rellenado haz click en enviar para publicarlo, podrás editarlo mas tarde si lo deseas.</p>
 
-		{!! Form::label('title', 'Titulo') !!}
-		{!! Form::textarea('title', null, [
-			'rows' => 2,
-			'class' => 'prueba',
-			'placeholder' => 'prueba placeholder'
-			]) !!}
+			<form method="POST" action="{{ route('create') }}">
 
-		<button type="submit" class="">Enviar</button>
-
-	{!! Form::close() !!}
+			    {!! csrf_field() !!}
 
 
+				@include('partials.formerrors')
+
+				<div class="pb40">
+					@include('partials.formcontent')
+				</div>
+				<div class="pb40">
+					@include('partials.formcalendar')
+				</div>
+				<div class="pb40">
+					@include('partials.formmap')
+				</div>
+				<div class="pb40">
+					@include('partials.formend')
+				</div>
+
+
+	            
+			</form>
+
+	</div>
+
+</div>
+
+@endsection
+
+@section('scripts')
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script src="{{ asset('/assets/js/jquery-ui.multidatespicker.js') }}"></script>
 
 @endsection

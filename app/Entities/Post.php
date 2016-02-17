@@ -3,13 +3,19 @@
 namespace Ensured\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Ensured\Traits\RecordsActivity;
 
 class Post extends Model
 {
 
-    protected $fillable = [
-        'title'
-    ];
+    use RecordsActivity;
+
+    protected $fillable = ['title'];
+
+    /**
+     * The attributes that should be visible in json
+     */
+    protected $visible = ['title', 'lat', 'lng', 'id'];
 
     public function user() //singular porque solo pertenece a un usuario
     {
@@ -45,8 +51,35 @@ class Post extends Model
     	//$tags = Post::find(1)->tags()->orderBy()->get();
     }
 
-    public function getSlugAttribute() {
+    public function getSlugAttribute() 
+    {
         return str_slug($this->title);
     }
+
+    public function getExtractAttribute()
+    {   
+        $more = " ...";
+        $length = 300;
+        $extract = $this->content;
+
+        $extract = preg_replace("/<iframe[^>]*>.*?<\/iframe>/i", "(vídeo) ", $extract); 
+        $extract = preg_replace("/<img.+?src=[\"'](.+?)[\"'].*?>/i", "(imagen) ", $extract); 
+
+        if (strlen($extract) > $length) {
+            $extract = wordwrap($extract, $length);
+            $extract = explode("\n", $extract, 2);
+            $extract = $extract[0] . $more;
+        }
+        return $extract;
+    }
+
+    public function getUrldomainAttribute()
+    {
+        return parse_url($this->url, PHP_URL_HOST);
+    }
+
+
+
+
 
 }

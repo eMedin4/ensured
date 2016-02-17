@@ -29,7 +29,7 @@ class PostTableSeeder extends BaseSeeder
 
     public function run()
     {
-    	$this->createMultiple(5);
+    	$this->createMultiple(100);
     }
 
 

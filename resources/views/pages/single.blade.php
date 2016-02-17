@@ -1,28 +1,35 @@
 @extends('layouts.master')
 
-@section('title', 'esto es el main')
+@section('title', $post->title)
 
 @section('bodyclass', 'singlepage')
 
 @section('content')
 
-	@include('includes.header')
-
 	<div class="content">
 
-		<div class="half-left">
+		<div class="left-50">
+
+
 			<div id="map"></div>
 		</div>
 
-		<div class="half-right">
+		<div class="right-50">
 
-			<h1> Esto es el single </h1>
+			<div class="inner-half">
 
-			@include('includes.articlesingle')
+				@include('includes.articlesingle')
+
+			</div>
 
 		</div>
 
 	</div>
+
+	<script>
+	var testObj = {!! $toJs !!};
+	
+	</script>
 
 
 @endsection

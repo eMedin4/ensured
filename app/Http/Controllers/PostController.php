@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 use Auth;
+use Carbon\Carbon;
 use Ensured\Http\Requests;
 use Ensured\Http\Controllers\Controller;
 use Ensured\Entities\Post;
 use Ensured\Entities\Comment;
+use Ensured\Entities\Tag;
 use Ensured\Repositories\PostRepository;
 
 class PostController extends Controller
@@ -28,12 +30,10 @@ class PostController extends Controller
 
     public function main()
     {
-
-        //llamamos a postrepository mediante la propiedad $this->postRpository 
-        $posts = $this->postRepository->paginateScored();
-        
-        $title = "Esto es el main";
-        return view('pages.main', compact('posts', 'title'));
+        $posts = $this->postRepository->paginateMain();
+        $title = "Portada";
+        $toJs = $posts->toJson();
+        return view('pages.main', compact('posts', 'title', 'toJs'));
     }    
 
     public function score()
@@ -48,13 +48,15 @@ class PostController extends Controller
     public function single($id)
     {
     	$post = $this->postRepository->single($id);
+        $toJs = $post->toJson();
 
-    	return view('pages.single', compact('post'));
+    	return view('pages.single', compact('post', 'toJs'));
     }
 
     public function create()
     {
-        return view('pages.create');
+        $tags = Tag::all();
+        return view('pages.create', compact('tags'));
     }
 
     public function store(Request $request)

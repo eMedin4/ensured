@@ -22,7 +22,7 @@ class DateTableSeeder extends BaseSeeder
 
     public function run()
     {
-    	$this->createMultiple(20);
+    	$this->createMultiple(200);
     }
 
 

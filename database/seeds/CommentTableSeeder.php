@@ -26,7 +26,7 @@ class CommentTableSeeder extends BaseSeeder
 
     public function run()
     {
-    	$this->createMultiple(5);
+    	$this->createMultiple(50);
     }
 
 

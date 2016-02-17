@@ -1,41 +1,57 @@
 @extends('layouts.master')
 
+@section('title', 'Entra con tu usuario')
+
+@section('bodyclass', 'loginpage')
+
 @section('content')
 
-@include('includes.header')
+<div class="content content-limit">
 
-<div>Login</div>
+    <div class="limit p40">
 
-<form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+        <h1 class="sub-line"> Entra con tu usuario </h1>
 
-    {!! csrf_field() !!}
+        <div class="auth-form">
 
-    <div class="prueba{{ $errors->has('email') ? ' has-error' : '' }}"></div>
-    <label>E-Mail Address</label>
-    <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-    @if ($errors->has('email'))
-        <span class="help-block">
-            <strong>{{ $errors->first('email') }}</strong>
-        </span>
-    @endif
+            @if (Session::get('message'))
+                <div class="info info-error mb20">
+                    <i class="fa fa-frown"></i>
+                    <h2>Uups...</h2>
+                    <p>{{ Session::get('message') }}</p>
+                </div>
+            @endif
 
-    <div class="prueba{{ $errors->has('password') ? ' has-error' : '' }}"></div>
-    <label>Password</label>
-    <input type="password" class="form-control" name="password">
-    @if ($errors->has('password'))
-        <span class="help-block">
-            <strong>{{ $errors->first('password') }}</strong>
-        </span>
-    @endif
+            <form method="POST" action="{{ route('postlogin') }}">
+            {!! csrf_field() !!}
 
-    <label>
-        <input type="checkbox" name="remember"> Remember Me
-    </label>
+                <div class="form-group pb10">
+                    <label for="user">Nombre de usuario o email</label>
+                    <input type="text" name="user" id="user" value="{{ old('user') }}">
+                </div>
 
-    <button type="submit" class="btn btn-primary">
-        <i class="fa fa-btn fa-sign-in"></i>Login
-    </button>
+                <div class="form-group pb10">
+                    <label for="password">Contraseña</label>
+                    <input type="password" name="password" id="password">
+                </div>
 
-    <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-    </form>
+                <div class="form-group pb15">
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember" class="label-checkbox">Recuérdame</label>
+                </div>
+
+                <div class="form-group pb10">
+                    <button type="submit" class="btn">Entra</button>
+                </div>
+
+                <div class="h5">
+                    <a class="btn btn-link" href="{{ url('/password/reset') }}">¿Has olvidado tu contraseña?</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
 @endsection

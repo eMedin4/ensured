@@ -1,42 +1,64 @@
 
-<h2><a href="{{ route('single', ['id' => $post, 'title' => $post->slug]) }}">{{ $post->title }}</a></h2>
-<h3>{{ $post->location }}</h3>
-<p>{{ $post->content }}</p>
-<h5>
-	<strong>up:</strong>
-	{{$post->up}}
-	<strong>score:</strong>
-	{{$post->score}}
-</h5>
+<article class="pb40">
 
-<h5>
+	@include('partials.votes')
 
-	{{ $post->created_at->format('d/m/y h:ia') }}
+	{{-- title --}}
+	<h1 class="pb4 h1-mini">
+		<a href="{{ route('single', ['id' => $post, 'title' => $post->slug]) }}">
+			{{ $post->title }}
+		</a>
+	</h1>
 
-	{{ $post->user->name }}
-</br>
+	{{-- url and tags --}}
+	<div class="post-more pb2">
+		@if ( $post->url )
+			<h3 class="url pr10">
+				<a href="{{ $post->url }}" target="_blank" rel="nofollow">
+					<img src="http://www.google.com/s2/favicons?domain={{ $post->url }}">
+					{{ $post->urldomain }}
+				</a>
+			</h3>
+		@endif
+
+		@if (!$post->tags->isEmpty())
+			<h3 class="show-tags">
+				<span class="normal-weight"> En: </span>
+				@foreach($post->tags as $tag)
+					<span class="tag">{{ $tag->name }}</span>
+				@endforeach
+			</h3>
+		@endif
+	</div>
+
+	{{-- content --}}
+	<p class="pb4">{{ $post->extract }}</p>
+
+	{{-- meta --}}
 
 
-<h2> Votos: {{ $post->num_votes }}. </h2>
-	{{-- podria ser tambien {{ $post->postvotes()->count() }} --}}
+	<div class="meta-right">
+	
+		@include('partials.collections')
 
-{{--
-@foreach($post->postvotes as $voters)
+		@if ($post->num_comments)
+			<div class="comments-count relative right">
+				<i class="fa fa-comment-text-outline"></i> 
+				{{ $post->num_comments }}
+			</div>
+		@endif
+	</div>
 
-	<span>{{$voters->user->name}} </span>
+	<div class="meta-left">
+		<span class="dates relative purple pr10">
+			<i class="fa fa-calendar-blank icon-calendar"></i>
+			@include('partials.dates')
+		</span>
 
-@endforeach
---}}
-@if ( true)
-{!! Form::open(['route' => ['postvote', $post->id]]) !!}
-	<button type="submit">Votar</button>
-{!! Form::close() !!}
-@else
-Ya has votado
-@endif
+		<span class="location relative purple">
+			<i class="fa fa-location-arrow-outline"></i>
+			{{ $post->location }}
+		</span>
+	</div>
 
-
-<h2> Comentarios <span>total: {{ $post->num_comments }}</h2>
-<hr>
-<br>
-<br>
+</article>

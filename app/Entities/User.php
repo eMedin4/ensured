@@ -38,6 +38,11 @@ class User extends Authenticatable
         return $this->hasMany(Postvote::class);
     }
 
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
+    }
+
     public function hasVoted(Post $post)
     {
         return Postvote::where(['user_id' => $this->id, 'post_id' => $post->id])->count();

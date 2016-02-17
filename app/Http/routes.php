@@ -30,23 +30,61 @@
 |
 */
 
+Route::get('prueba', function() {
+    return view('prueba');
+});
+
 
 
 Route::group(['middleware' => 'web'], function () {
 
-    Route::auth();
+    /*LOGIN*/
+        Route::get('entrar',
+            ['as' => 'getlogin', 'uses' => 'AuthController@getLogin']);
+
+        Route::post('entrar',
+            ['as' => 'postlogin', 'uses' => 'AuthController@postLogin']);
+
+        Route::get('salir',
+            ['as' => 'logout', 'uses' => 'AuthController@logout']);
+
+        Route::get('registro',
+            ['as' => 'getregister', 'uses' => 'AuthController@getRegister']);
+
+        Route::post('registro',
+            ['as' => 'postregister', 'uses' => 'AuthController@postRegister']);
 
     Route::get('/', 
     	['as' => 'main', 'uses' => 'PostController@main']);
 
-    Route::get('score', 
-    	['as' => 'score', 'uses' => 'PostController@score']);
+    Route::get('/{username}/actividad', 
+        ['as' => 'activity', 'uses' => 'ActivitiesController@show']);
 
     Route::get('/{id}/{title}', 
     	['as' => 'single', 'uses' => 'PostController@single']);
 
-    Route::post('votarpost/{id}', 
-    	['as' => 'postvote', 'uses' => 'VoteController@postvote']);
+    Route::post('votarpost', 
+        ['as' => 'postvote', 'uses' => 'VoteController@postvote']);  
+
+    /*REFINE POSTS*/
+        Route::get('hoy', 
+            ['as' => 'today', 'uses' => 'RefinePostController@today']);
+
+        Route::get('mañana', 
+            ['as' => 'tomorrow', 'uses' => 'RefinePostController@tomorrow']);
+
+        Route::get('semana', 
+            ['as' => 'week', 'uses' => 'RefinePostController@week']);
+
+        Route::get('findesemana', 
+            ['as' => 'weekend', 'uses' => 'RefinePostController@weekend']);
+
+        Route::get('mes', 
+            ['as' => 'month', 'uses' => 'RefinePostController@month']);
+
+        Route::get('pasados', 
+            ['as' => 'pasts', 'uses' => 'RefinePostController@pasts']);
+
     
 });
 
