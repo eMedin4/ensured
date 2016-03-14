@@ -14,7 +14,7 @@ return [
     */
 
     'accepted'             => ':attribute debe ser aceptado.',
-    'active_url'           => ':attribute no es una URL válida.',
+    'active_url'           => 'El campo :attribute no es una URL válida.',
     'after'                => ':attribute debe ser una fecha posterior a :date.',
     'alpha'                => ':attribute solo debe contener letras.',
     'alpha_dash'           => ':attribute solo debe contener letras, números y guiones.',
@@ -29,8 +29,8 @@ return [
     ],
     'boolean'              => 'El campo :attribute debe tener un valor verdadero o falso.',
     'confirmed'            => 'La confirmación de :attribute no coincide.',
-    'date'                 => ':attribute no es una fecha válida.',
-    'date_format'          => ':attribute no corresponde al formato :format.',
+    'date'                 => 'El campo :attribute no es una fecha válida.',
+    'date_format'          => 'El campo :attribute no corresponde al formato :format.',
     'different'            => ':attribute y :other deben ser diferentes.',
     'digits'               => ':attribute debe tener :digits dígitos.',
     'digits_between'       => ':attribute debe tener entre :min y :max dígitos.',
@@ -45,14 +45,14 @@ return [
     'max'                  => [
         'numeric' => ':attribute no debe ser mayor a :max.',
         'file'    => ':attribute no debe ser mayor que :max kilobytes.',
-        'string'  => ':attribute no debe ser mayor que :max caracteres.',
+        'string'  => 'El campo :attribute no puede contener mas de :max caracteres.',
         'array'   => ':attribute no debe tener más de :max elementos.',
     ],
     'mimes'                => ':attribute debe ser un archivo con formato: :values.',
     'min'                  => [
         'numeric' => 'El tamaño de :attribute debe ser de al menos :min.',
         'file'    => 'El tamaño de :attribute debe ser de al menos :min kilobytes.',
-        'string'  => ':attribute debe contener al menos :min caracteres.',
+        'string'  => 'El campo :attribute debe tener al menos :min caracteres.',
         'array'   => ':attribute debe tener al menos :min elementos.',
     ],
     'not_in'               => ':attribute es inválido.',
@@ -107,7 +107,10 @@ return [
 
     'attributes' => [
         'title' => 'título',
-        'comment' => 'comentario'
+        'comment' => 'comentario',
+        'location' => 'lugar',
+        'content' => 'contenido',
+        'input-single-date' => 'fecha'
     ],
 
 ];

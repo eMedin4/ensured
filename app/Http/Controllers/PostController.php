@@ -48,6 +48,7 @@ class PostController extends Controller
     public function single($id)
     {
     	$post = $this->postRepository->single($id);
+        /*$comments = $this->postRepository->comments($id);*/
         $toJs = $post->toJson();
 
     	return view('pages.single', compact('post', 'toJs'));
@@ -62,20 +63,63 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-        /*dd($request->all()); comprobar que envio*/
-        $this->validate($request, [
-            'title' => 'required|max:120'
-        ]);
+/*        dd($request->all());*/
+        
+        $rules = $this->rules($request->all());
 
-        $post = new Post($request->all());
-        $post->location = "Parc del Guinardó";
-        $post->content = "Quos quo magni voluptatem distinctio. Et suscipit voluptas laudantium corporis mollitia. Veniam nihil odit culpa ducimus officia est. Pariatur nulla fugiat aut enim repellendus. Eum sequi velit aut non earum placeat. Mollitia et quo autem quibusdam officia non. Quia error blanditiis distinctio non. Omnis in perferendis temporibus ut. Quas magni porro asperiores consectetur fuga ex. Et omnis voluptas voluptates doloremque provident. Quo aut fuga ut nostrum mollitia deserunt. Quis ipsum ea cumque necessitatibus. Aut fuga velit temporibus qui ducimus adipisci commodi. Suscipit velit quisquam sit officia quasi hic. ";
-        $post->lat = 41.38247;
-        $post->lng = 2.13534;
+        if($rules['input-multi-dates-format'] == 'error') {
+            return Redirect::back()->withInput()->withErrors('hola');
+        }
+
+        $this->validate($request,$rules);
+
+        $post = new Post();
+        $post->title = $request->input('title');
+        $post->location = $request->input('location');
+        $post->content = $request->input('content');
+        $post->lat = $request->input('lat');
+        $post->lng = $request->input('lng');
+        $post->url = $request->input('url');
         $post->user_id = Auth::user()->id;
         $post->save();
 
         return Redirect::route('single', [$post->id, $post->title]);
+
+    }
+
+    public function rules($data)
+    {
+
+        $rules = [
+            'title' => 'required|max:120|min:3',
+            'content' => 'required|max:20000|min:10',
+            'location' => 'required|max:120|min:3',
+            'input-single-date' => 'required_if:datestype,single-date|date_format:d/m/y',
+            'input-from-date' => 'required_if:datestype,interval-dates|date_format:d/m/y',
+            'input-to-date' => 'required_if:datestype,interval-dates|date_format:d/m/y',
+            'input-multi-dates' => 'required_if:datestype,multi-dates',
+            'lat' => 'required|numeric',
+            'lng' => 'required|numeric',
+            'url' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+            'input-multi-dates-format' => 'array_date_format'
+        ];
+
+        if($data['datestype'] == 'multi-dates' && $data['input-multi-dates']) {
+
+            $dates = array_map('trim', explode(',', $data['input-multi-dates']));
+            foreach($dates as $key => $val) {
+
+                $validateDate = \DateTime::createFromFormat('d/m/y',$val);
+
+                if (!$validateDate) {
+                    $rules['input-multi-dates-format'] = 'error';
+                }
+
+            }
+        }   
+
+        return $rules;     
+
 
 
     }

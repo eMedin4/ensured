@@ -1,41 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
-
-
-
-
-
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
-
-Route::get('prueba', function() {
-    return view('prueba');
-});
-
-
-
 Route::group(['middleware' => 'web'], function () {
 
     /*LOGIN*/
@@ -59,6 +23,9 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/{username}/actividad', 
         ['as' => 'activity', 'uses' => 'ActivitiesController@show']);
+
+    Route::get('/{username}/actividad/{filter}', 
+        ['as' => 'filteractivity', 'uses' => 'ActivitiesController@filter']);
 
     Route::get('/{id}/{title}', 
     	['as' => 'single', 'uses' => 'PostController@single']);
@@ -98,5 +65,15 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::post('comentar/{id}', 
     	['as' => 'comment', 'uses' => 'CommentController@store']);
+
+    Route::post('votarcomentario',
+        ['as' => 'commentvote', 'uses' => 'CommentController@commentvote']);
+
+    Route::post('colecciones',
+        ['as' => 'collections', 'uses' => 'CollectionController@show']);
+
+    Route::post('guardarencoleccion',
+        ['as' => 'savecollection', 'uses' => 'CollectionController@store']);
+
 
 });

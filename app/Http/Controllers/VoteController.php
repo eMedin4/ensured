@@ -16,30 +16,18 @@ class VoteController extends Controller
     {
 
     	if( ! $request->ajax()) { 	    
-
 	        return back(); 
-
 	    }
 
-
 		$hexip = bin2hex(inet_pton($request->getClientIp()));
-
     	$user_id = Auth::user() ? Auth::user()->id : null;
-
     	$postvote = new PostVote;
-
     	$postvote->post_id = $request->post_id;
-
     	$postvote->user_id = $user_id;
-
     	$postvote->ip_address = $hexip;
-
     	$postvote->save();
 
-
-
     	return response()->json(['name' => 'prueba', 'state' => 'CA']);
-
 
     }
 }

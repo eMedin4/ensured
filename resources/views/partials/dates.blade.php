@@ -11,12 +11,23 @@
 
 		@if ($setdata == 1)
 			<span class="extra-space"></span>
-			<i class="fa fa-more-horiz icon-more"></i>
+			<div class="relative icon-more">
+				<i class="dropdown fa fa-more-horiz"></i>
+				<div class="dropdown-menu dropdown-dates">
+					@foreach($post->dates as $date)
+						{{ rtrim($date->date->formatLocalized('%a'), '.') }}
+						{{ $date->date->formatLocalized('%d') }}
+						{{ rtrim($date->date->formatLocalized('%b'), '.') }}
+					@endforeach
+				</div>
+			</div>
 			<?php break; ?>
 
 		@else
 
-			{{ $date->date->formatLocalized('%a %d %b') }}
+			{{ rtrim($date->date->formatLocalized('%a'), '.') }}
+			{{ $date->date->formatLocalized('%d') }}
+			{{ rtrim($date->date->formatLocalized('%b'), '.') }}
 			<?php $setdata = 1; ?>
 
 		@endif

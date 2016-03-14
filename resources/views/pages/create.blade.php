@@ -8,7 +8,7 @@
 
 <div class="content content-limit">
 
-	<div class="limit p40">
+	<div class="limit p30">
 
 		<h1 class="big-title pb5"> Añade tu contenido </h1>
 
@@ -24,7 +24,7 @@
 				<div class="pb40">
 					@include('partials.formcontent')
 				</div>
-				<div class="pb40">
+				<div class="pb40 overflow">
 					@include('partials.formcalendar')
 				</div>
 				<div class="pb40">

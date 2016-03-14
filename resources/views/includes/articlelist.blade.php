@@ -1,19 +1,19 @@
 
-<article class="pb40">
+<article class="pb40 mainarticle">
 
-	@include('partials.votes')
-
-	{{-- title --}}
-	<h1 class="pb4 h1-mini">
-		<a href="{{ route('single', ['id' => $post, 'title' => $post->slug]) }}">
-			{{ $post->title }}
-		</a>
-	</h1>
+	<header>
+		@include('partials.votes')
+		<h1 class="h1-mini toinline">
+			<a href="{{ route('single', ['id' => $post, 'title' => $post->slug]) }}">
+				{{ $post->title }}
+			</a>
+		</h1>
+	</header>
 
 	{{-- url and tags --}}
 	<div class="post-more pb2">
 		@if ( $post->url )
-			<h3 class="url pr10">
+			<h3 class="url pr10 inline-block">
 				<a href="{{ $post->url }}" target="_blank" rel="nofollow">
 					<img src="http://www.google.com/s2/favicons?domain={{ $post->url }}">
 					{{ $post->urldomain }}
@@ -21,14 +21,14 @@
 			</h3>
 		@endif
 
-		@if (!$post->tags->isEmpty())
-			<h3 class="show-tags">
+ 		@if (!$post->tags->isEmpty())
+			<h3 class="show-tags inline-block">
 				<span class="normal-weight"> En: </span>
 				@foreach($post->tags as $tag)
 					<span class="tag">{{ $tag->name }}</span>
 				@endforeach
 			</h3>
-		@endif
+		@endif 
 	</div>
 
 	{{-- content --}}
@@ -37,7 +37,7 @@
 	{{-- meta --}}
 
 
-	<div class="meta-right">
+	<div class="meta-right h3">
 	
 		@include('partials.collections')
 
@@ -49,9 +49,9 @@
 		@endif
 	</div>
 
-	<div class="meta-left">
+	<div class="meta-left h3">
 		<span class="dates relative purple pr10">
-			<i class="fa fa-calendar-blank icon-calendar"></i>
+			<i class="fa fa-calendar-text icon-calendar"></i>
 			@include('partials.dates')
 		</span>
 

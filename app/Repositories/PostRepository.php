@@ -13,7 +13,7 @@ class PostRepository {
             'posts.*, '
             . '(SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) as num_comments, '
             . '(SELECT COUNT(*) FROM postvotes WHERE postvotes.post_id = posts.id) as num_votes'
-            )->with(['user', 'dates' => function ($query) {
+            )->with(['user', 'tags', 'postvotes', 'dates' => function ($query) {
                 $query->orderBy('date', 'asc');
             }]);
     }
@@ -55,5 +55,11 @@ class PostRepository {
     		->where('post_id', $id)
     		->get();*/
     }
+
+/*    public function comments($id)
+    {
+        return Comment::selectRaw()
+            ->where('post_id', $id)
+    }*/
 
 }

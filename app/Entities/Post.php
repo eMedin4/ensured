@@ -2,6 +2,7 @@
 
 namespace Ensured\Entities;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 use Ensured\Traits\RecordsActivity;
 
@@ -38,7 +39,8 @@ class Post extends Model
 
     public function postvotes()
     {
-    	return $this->hasMany(Postvote::class);
+    	return $this->hasMany(Postvote::class)
+            /*->where('user_id', 4)*/;
     }
 
     public function tags()

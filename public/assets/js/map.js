@@ -77,6 +77,13 @@ function initialize() {
 
     if($('body').is('.createpage')) {
 
+        if($('#latitude').val() && $('#longitude').val()) {
+            var lat = parseFloat($('#latitude').val());
+            var lng = parseFloat($('#longitude').val());
+            var center = {lat: lat, lng: lng};
+        }
+        
+
         var marker = new google.maps.Marker({
             position: center,
             draggable: true,
@@ -88,6 +95,8 @@ function initialize() {
             document.getElementById("latitude").value = this.getPosition().lat();
             document.getElementById("longitude").value = this.getPosition().lng();
         });
+
+        map.setCenter(marker.getPosition());
 
     }
 

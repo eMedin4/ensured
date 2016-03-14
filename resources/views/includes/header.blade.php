@@ -4,14 +4,37 @@
 
 		<div class="logo left">
 			  <a href="{{ route('main') }}">
-			    <img src="{{ asset('/assets/images/logo.png') }}" alt="Octopusss" />
+			    <h1>
+			    	9topus
+			    	<span>#Barcelona</span>
+			    </h1>
 			  </a>
 		</div>
 
 		<ul class="main-menu inline">
-			<li @if(Route::is('main')) class="active" @endif><a href="{{ route('main') }}">Portada</a></li>
-			<li @if(Route::is('score')) class="dropdown active" @else class="dropdown" @endif>
-				<span>Buscar<i class="fa fa-chevron-down"></i></span>
+			
+			@if (Auth::guest()) 
+			<!-- contrario sería Auth::check() -->
+			    <li class="menu-sign">
+				    <a class="menu-sign-up" href="{{ route('getregister') }}">Regístrate</a> 
+				    <span>/</span> 
+				    <a class="menu-sign-in" href="{{ route('getlogin') }}">Entra</a>
+			    </li>
+
+			@else
+			    <li class="relative">
+			    	<span class="dropdown">{{ Auth::user()->name }}<i class="fa fa-chevron-down chevron"></i></span>
+					<ul class="dropdown-menu">
+						<li><a href="{{ route('activity', ['username' => Auth::user()->name ]) }}">Actividad</a></li>
+						<li><a href="{{ route('logout') }}">Salir</a></li>				
+					</ul>
+			    </li>
+			    <li><a href="{{ route('create') }}">Nuevo</a></li>
+			@endif
+
+			<li class="relative">
+				<span class="dropdown">Buscar<i class="fa fa-chevron-down chevron"></i>
+				</span>
 				<div class="dropdown-menu dropdown-search">
 					<form method="POST" action="{{ route('create') }}">
 			    		{!! csrf_field() !!}
@@ -22,8 +45,10 @@
     				</form>
 				</div>
 			</li>
-			<li @if(Route::is('score')) class="dropdown active" @else class="dropdown" @endif>
-				<span>Por fecha<i class="fa fa-chevron-down"></i></span>
+
+			<li class="relative">
+				<span class="dropdown">Por fecha<i class="fa fa-chevron-down chevron"></i>
+				</span>
 				<ul class="dropdown-menu">
 					<li><a href="{{ route('today') }}">Hoy</a></li>
 					<li><a href="{{ route('tomorrow') }}">Mañana</a></li>
@@ -33,22 +58,8 @@
 					<li><a href="{{ route('pasts') }}">Ya iniciados y pasados</a></li>					
 				</ul>
 			</li>
-			<li><a href="">Mas comentarios</a></li>
-			@if (Auth::guest()) 
-			<!-- contrario sería Auth::check() -->
-			    <li><a href="{{ route('getlogin') }}">Entra</a></li>
-			    <li><a href="{{ route('getregister') }}">Regístrate</a></li>
-			@else
-			    <li class="dropdown">
-			    	<span>{{ Auth::user()->name }}<i class="fa fa-chevron-down"></i></span>
-					<ul class="dropdown-menu">
-						<li><a href="{{ route('activity', ['username' => Auth::user()->name ]) }}">Actividad</a></li>
-						<li><a href="#">Salir</a></li>				
-					</ul>
-			    </li>
-			    <li><a href="{{ route('create') }}">Nuevo</a></li>
-			    <li><a href="{{ route('logout') }}">Logout</a></li>
-			@endif
+
+			<li @if(Route::is('main')) class="active" @endif><a href="{{ route('main') }}">Portada</a></li>
 
 		</ul>
 

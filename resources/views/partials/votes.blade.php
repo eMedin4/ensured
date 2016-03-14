@@ -1,7 +1,9 @@
-
-<div class="btn-vote h1-mini" data-id="{{ $post->id }}" data-url="{{ route('postvote')}}">
-
-	<span class="vote-count left">{{ count($post->postvotes) }}</span>
-	<i class="fa fa-triangle-up"></i>
-
-</div>
+@if(count($post->postvotes))
+	<div class="btn-vote idle-votepost inline-block">
+		<span class="vote-count relative">{{ $post->num_votes }}<i class='fa fa-check'></i></span>
+	</div>
+@else
+	<div class="btn-vote launch-votepost inline-block" data-id="{{ $post->id }}" data-url="{{ route('postvote')}}">
+		<span class="vote-count relative">{{ $post->num_votes }}<i class="fa fa-triangle-up"></i></span>
+	</div>
+@endif
