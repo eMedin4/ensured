@@ -4,4 +4,4 @@
 - Al crear un post aparece la fecha en 'pasado'
 - Mejora de la vista del voto ok en un single post
 - Slugs con guiones y sin porcientos
-~~ -Solucionar exceso de queries en main ~~
+- ~~Solucionar exceso de queries en main~~
