@@ -9,3 +9,5 @@
 
 15/3/16
 - Descuadre maquetación página de registro
+- ~~Desarrollo funcionalidad colecciones~~
+- ~~Añadir coleccion Favoritos al registrar nuevo usuario~~
