@@ -14,20 +14,21 @@
 
 <body class="@yield('bodyclass', '')">
 
-@include('includes.header')
+	<!--Header of page-->
+		@include('includes.header')
 
+	<!--Content of page-->
+		@yield('content')
 
+	<!--All site scripts-->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCod6UGQqYXibHSelQvfkQ5TN7K6k0xK0Q&"></script>
+		<script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script src="{{ asset('/assets/js/scripts.js') }}"></script>
+		<script src="{{ asset('/assets/js/map.js') }}"></script>
 
-@yield('content')
+	<!--Page scripts-->
+		@yield('scripts')
 
-
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCod6UGQqYXibHSelQvfkQ5TN7K6k0xK0Q&"></script>
-<script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script src="{{ asset('/assets/js/scripts.js') }}"></script>
-<script src="{{ asset('/assets/js/map.js') }}"></script>
-@yield('scripts')
-</script>
 </body>
 </html>

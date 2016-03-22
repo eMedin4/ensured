@@ -1,5 +1,7 @@
 @extends('layouts.page')
 
+@section('title', 'actividad')
+
 @section('main')
 
 	@if ($activities->isEmpty())

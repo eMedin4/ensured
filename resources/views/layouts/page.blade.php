@@ -6,27 +6,36 @@
 
 @section('content')
 
-<div class="content content-limit">
+	<div class="content content-limit">
 
-<h1 class="header-page h1-giant"> {{ $user->name }} </h1>
+		<h1 class="header-page h1-giant"> {{ $user->name }} </h1>
 
-    <div class="limit white-background p30 overflow page-height">
+	    <div class="limit white-background p30 overflow page-height">
 
-		<div class="grid-center inline-block left">
-			<div class="main">
-				<div class="pb20">
-					<h1 class="h1-ext sub-line-alt page-header">{!! $title !!}</h1>
+			<div class="grid-center inline-block left">
+				<div class="main">
+					<div class="pb20">
+						<h1 class="h1-ext sub-line-alt page-header">{!! $title !!}</h1>
+					</div>
+					<section class="feed">
+
+						<!-- Main content -->
+						@yield('main')
+
+					</section>
 				</div>
-				<section class="feed">
-					@yield('main')
-				</section>
-			</div>
-		</div>	
+			</div>	
 
-		<div class="grid-sidebar inline-block">
-			@include('partials.sidebar')
-		</div>		
+			<div class="grid-sidebar inline-block">
+
+				<!-- Sidebar -->
+				@include('partials.sidebar')
+
+			</div>		
+		</div>
 	</div>
-</div>
 
-@include('includes.footer')
+	<!-- Footer -->
+	@include('includes.footer')
+
+@endsection

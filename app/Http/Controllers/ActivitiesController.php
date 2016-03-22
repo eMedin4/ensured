@@ -12,7 +12,7 @@ use Ensured\Entities\User;
 class ActivitiesController extends Controller
 {
 
-    public function show($username, $filter = Null)
+    public function show($username, $filter = null)
     {
     	
         $title = $this->getTitle($filter);

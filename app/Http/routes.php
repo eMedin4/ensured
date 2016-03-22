@@ -1,8 +1,13 @@
 <?php
 
+
+
 Route::group(['middleware' => 'web'], function () {
 
-    /*LOGIN*/
+
+    /*
+        LOGIN
+    */
         Route::get('entrar',
             ['as' => 'getlogin', 'uses' => 'AuthController@getLogin']);
 
@@ -18,26 +23,25 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('registro',
             ['as' => 'postregister', 'uses' => 'AuthController@postRegister']);
 
-    Route::get('/', 
-    	['as' => 'main', 'uses' => 'PostController@main']);
 
-    Route::get('/{username}', 
-        ['as' => 'profile', 'uses' => 'AuthController@showProfile']);
+    /*
+        POSTS
+    */
 
-    Route::get('/{username}/actividad/{filter?}', 
-        ['as' => 'filteractivity', 'uses' => 'ActivitiesController@show']);
+        Route::get('/', 
+        	['as' => 'main', 'uses' => 'PostController@main']);
 
-    Route::get('/{username}/listas', 
-        ['as' => 'pagecollections', 'uses' => 'CollectionController@pagedetails']);
+        Route::get('/{id}/{title}', 
+            ['as' => 'single', 'uses' => 'PostController@single'])->where('id', '[0-9]+');
+
+        Route::post('votarpost', 
+            ['as' => 'postvote', 'uses' => 'VoteController@postvote']);  
 
 
-    Route::get('/{id}/{title}', 
-    	['as' => 'single', 'uses' => 'PostController@single']);
+    /*
+        FILTER BY DATES
+    */
 
-    Route::post('votarpost', 
-        ['as' => 'postvote', 'uses' => 'VoteController@postvote']);  
-
-    /*REFINE POSTS*/
         Route::get('hoy', 
             ['as' => 'today', 'uses' => 'RefinePostController@today']);
 
@@ -56,9 +60,25 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('pasados', 
             ['as' => 'pasts', 'uses' => 'RefinePostController@pasts']);
 
+    /*
+        USERS
+    */    
 
-    
-});
+        Route::get('/perfil/{username}', 
+            ['as' => 'profile', 'uses' => 'AuthController@showProfile']);
+
+        Route::get('/{username}/actividad/{filter?}', 
+            ['as' => 'filteractivity', 'uses' => 'ActivitiesController@show']);
+
+
+        Route::get('/{username}/listas', 
+            ['as' => 'pagecollections', 'uses' => 'CollectionController@pagedetails']);
+
+
+}); /*MIDDLEWARE WEB*/
+
+
+
 
 Route::group(['middleware' => ['web', 'auth']], function () {
 

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'esto es el main')
+
 
 @section('bodyclass', 'mainpage')
 

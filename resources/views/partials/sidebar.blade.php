@@ -10,7 +10,7 @@
 		<li><a href="{{ route('filteractivity', ['username' => $user->name, 'filter' => 'comentariospublicados' ]) }}">Comentarios publicados</a></li>
 		<li><a href="{{ route('filteractivity', ['username' => $user->name, 'filter' => 'articulospublicados' ]) }}">Comentarios votados</a></li>
 		<li><span class="bold-weight"><i class="fa fa-playlist-plus"></i>Listas</span></li>
-		<li><a href="{{ route('pagecollections', ['username' => Auth::user()->name ]) }}">Ver listas</a></li>
+		<li><a href="{{ route('pagecollections', ['username' => $user->name ]) }}">Ver listas</a></li>
 	</ul>
 
 	<ul class="sidebar-stats">

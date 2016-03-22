@@ -1,4 +1,4 @@
-<p class="info-note pb5">Puedes seleccionar un único día, un intervalo con un día de inicio y uno de final, o múltiples días seleccionandolos uno a uno.</p>
+<p class="pb7 text-info">Fechas</p>
 <div class="datestype overflow pb10">
 
 	<input type="radio" name="datestype" value="single-date" id="radio-single-date" @if(!old('datestype') || old('datestype') == 'single-date') checked @endif>

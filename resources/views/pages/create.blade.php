@@ -8,11 +8,22 @@
 
 <div class="content content-limit">
 
-	<div class="limit p30">
+	<div class="limit p30 white-background">
 
-		<h1 class="big-title pb5"> Añade tu contenido </h1>
+		<h1 class="big-title pb5 sub-line"> Añade tu contenido </h1>
 
-		<p class="sub-line">Tu publicación debe contener un qué, un cuándo y un dónde. Para ello debes indicar un título y descripción, una fecha y un lugar. Una vez rellenado haz click en enviar para publicarlo, podrás editarlo mas tarde si lo deseas.</p>
+		<p class="pb10 text-info">Por favor, antes de publicar lee estas indicaciones:</p>
+		<ul class="instructions mb20">
+			<li>Todas las publicaciones deben contener un qué, un cuándo y un dónde.</li>
+			<li>Cuando envíes tu publicacion automáticamente estará disponible en la página, puedes editar todos los campos mas tarde si lo deseas.</li>
+			<li><span>Título y contenido: </span>El título ha de ser lo mas específico posible, tienes 120 carácteres. En el contenido puedes desarrollarlo como desees</li>
+			<li><span>Fechas: </span>Selecciona un único día, un intervalo entre un día de inicio y uno de fin, o múltiples días seleccionándolos uno a uno.</li>
+			<li><span>Lugar: </span>Primero escribe el nombre del lugar, puede ser el nombre de un local, bar, tienda, teatro, sala, calle, barrio, plaza, parque, casa de
+			alguien,... Luego sitúalo arrastrando el marcador sobre el mapa.</li>
+			<li><span>Web y etiquetas: </span>Opcionalmente puedes añadir una direccion web a tu publicación. También puedes asignar un máximo de 2 etiquetas para ganar visibilidad.</li>
+		</ul>
+
+
 
 			<form method="POST" action="{{ route('create') }}">
 
@@ -21,16 +32,16 @@
 
 				@include('partials.formerrors')
 
-				<div class="pb40">
+				<div class="pb20">
 					@include('partials.formcontent')
 				</div>
-				<div class="pb40 overflow">
+				<div class="sub-line overflow">
 					@include('partials.formcalendar')
 				</div>
-				<div class="pb40">
+				<div class="pb20">
 					@include('partials.formmap')
 				</div>
-				<div class="pb40">
+				<div class="pb20">
 					@include('partials.formend')
 				</div>
 
