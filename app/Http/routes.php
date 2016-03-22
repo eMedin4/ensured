@@ -21,11 +21,15 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', 
     	['as' => 'main', 'uses' => 'PostController@main']);
 
-    Route::get('/{username}/actividad', 
-        ['as' => 'activity', 'uses' => 'ActivitiesController@show']);
+    Route::get('/{username}', 
+        ['as' => 'profile', 'uses' => 'AuthController@showProfile']);
 
-    Route::get('/{username}/actividad/{filter}', 
-        ['as' => 'filteractivity', 'uses' => 'ActivitiesController@filter']);
+    Route::get('/{username}/actividad/{filter?}', 
+        ['as' => 'filteractivity', 'uses' => 'ActivitiesController@show']);
+
+    Route::get('/{username}/listas', 
+        ['as' => 'pagecollections', 'uses' => 'CollectionController@pagedetails']);
+
 
     Route::get('/{id}/{title}', 
     	['as' => 'single', 'uses' => 'PostController@single']);
@@ -52,6 +56,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('pasados', 
             ['as' => 'pasts', 'uses' => 'RefinePostController@pasts']);
 
+
     
 });
 
@@ -64,7 +69,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     	['as' => 'store', 'uses' => 'PostController@store']);
 
     Route::post('comentar/{id}', 
-    	['as' => 'comment', 'uses' => 'CommentController@store']);
+    	['as' => 'comment.create', 'uses' => 'CommentController@store']);
 
     Route::post('votarcomentario',
         ['as' => 'commentvote', 'uses' => 'CommentController@commentvote']);
@@ -74,6 +79,12 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::post('guardarencoleccion',
         ['as' => 'savecollection', 'uses' => 'CollectionController@store']);
+
+    Route::post('nuevacoleccion',
+        ['as' => 'newcollection', 'uses' => 'CollectionController@add']);
+
+
+
 
 
 });

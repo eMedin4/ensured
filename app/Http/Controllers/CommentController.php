@@ -5,6 +5,9 @@ namespace Ensured\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
+use Validator;
+use URL;
+use Redirect;
 use Ensured\Entities\Comment;
 use Ensured\Entities\Commentvote;
 use Ensured\Entities\Post;
@@ -16,9 +19,15 @@ class CommentController extends Controller
     public function store($id, Request $request)
     {
 
-    	$this->validate($request, [
-    		'content' => 'required|min:4'
-    	]);
+        $validator = Validator::make($request->all(), [
+            'content' => 'required|min:4'
+        ]);
+
+        if ($validator->fails()) {
+            $url = URL::previous() . '#form-link';
+            return Redirect::to($url)->withErrors($validator)->withInput();
+        }
+
 
     	$comment = new Comment($request->all());
         $comment->user_id = Auth::user()->id;
@@ -30,7 +39,7 @@ class CommentController extends Controller
         $comment->post_id = $id;
         $comment->save();*/
 
-    	session()->flash('success', 'Tu comentario se ha guardado');
+    	session()->flash('message', 'Tu comentario ha sido publicado');
     	return redirect()->back();
 
     }

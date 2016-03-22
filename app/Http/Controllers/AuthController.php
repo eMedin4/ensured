@@ -5,6 +5,7 @@ namespace Ensured\Http\Controllers;
 use Auth;
 use URL;
 use Ensured\Entities\User;
+use Ensured\Entities\Collection;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -13,7 +14,7 @@ class AuthController extends Controller
     public function getLogin(Request $request)
     {
 
-        if (URL::previous() != 'http://localhost/ensured/public/entrar') {
+        if (URL::previous() != 'http://localhost/ensured/public/entrar' && URL::previous() != 'http://localhost/ensured/public/registro') {
             $request->session()->put('preurl', URL::previous());
         }
 
@@ -44,8 +45,13 @@ class AuthController extends Controller
         return redirect()->back();
     }
 
-    public function getRegister()
+    public function getRegister(Request $request)
     {
+
+        if (URL::previous() != 'http://localhost/ensured/public/entrar' && URL::previous() != 'http://localhost/ensured/public/registro') {
+            $request->session()->put('preurl', URL::previous());
+        }
+
         return view('auth.register');
     }
 
@@ -65,8 +71,21 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->intended('/');
+        $collection = New Collection();
+        $collection->title = 'favoritos';
+        $collection->user_id = Auth::user()->id;
+        $collection->save();
 
+
+        return redirect($request->session()->get('preurl'));
+
+    }
+
+    public function showProfile($username)
+    {
+        $user = User::where('name', $username)->firstOrFail();
+        $title = "Perfil";
+        return view('pages.profile', compact('user', 'title'));    
     }
 }
 

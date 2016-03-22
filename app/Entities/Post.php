@@ -16,7 +16,7 @@ class Post extends Model
     /**
      * The attributes that should be visible in json
      */
-    protected $visible = ['title', 'lat', 'lng', 'id'];
+    protected $visible = ['title', 'content', 'num_votes', 'lat', 'lng', 'id'];
 
     public function user() //singular porque solo pertenece a un usuario
     {

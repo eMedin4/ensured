@@ -3,7 +3,7 @@ function initialize() {
 
 
 	var marker, i;
-	var icon = 'http://localhost/ensured/public/assets/images/def2.png';
+	var icon = 'http://localhost/ensured/public/assets/images/def3.png';
     var center = {lat: 41.38506, lng: 2.17340};
 
 	var map = new google.maps.Map(document.getElementById('map'), {
@@ -21,36 +21,44 @@ function initialize() {
 	var infobox = new InfoBox({
         alignBottom: true,
         boxStyle: {
-            width: "160px" },
-        pixelOffset: new google.maps.Size(-80, -10),
+            width: "300px" },
+        pixelOffset: new google.maps.Size(-150, -10),
         closeBoxURL: ""
     });
 
-  	for (i = 0; i < testObj.per_page; i++) {
+    console.log(toJs);
 
-		console.log(testObj.data[i].lat);
+
+  	for (i = 0; i < toJs.per_page; i++) {
 
 		marker = new google.maps.Marker({
-			position: new google.maps.LatLng(testObj.data[i].lat, testObj.data[i].lng),
+			position: new google.maps.LatLng(toJs.data[i].lat, toJs.data[i].lng),
 			map: map,
 			icon: icon,
-			title: testObj.data[i].title
+			title: toJs.data[i].title
 		});
 
 		google.maps.event.addListener(map, 'click', function(){
             infobox.close();
         });
 
-        var infoboxHtml = "<div class='infobox-content'>" + 
-        	testObj.data[i].title + 
-        	"</div><div class='infobox-link tright'><a href='#'>Leer mas</a></div>";
+        var content = toJs.data[i].content;
+        content = content.substr(0, 300);
 
-        google.maps.event.addListener(marker, 'click', (function(marker,infobox) {
+        var id = toJs.data[i].id;
+        var link = $('.mainarticle[data-id=' + id + ']').data('link');
+
+        var infoboxHtml = "<div class='h1-mini pb5'>" + 
+            "<span class='infobox-count'>" + toJs.data[i].num_votes + "</span><a href=" + link + ">" +
+        	toJs.data[i].title + "</a></div><div class='size16'>" + content + 
+        	"</div><div class='infobox-link tright'><a href=" + link + ">Entrar</a></div>";
+
+        google.maps.event.addListener(marker, 'click', (function(marker,infoboxHtml) {
             return function() {
                 infobox.setContent(infoboxHtml);
                 infobox.open(map, marker);
             };
-        })(marker,infobox));
+        })(marker,infoboxHtml));
 
 	}
 
@@ -69,6 +77,7 @@ function initialize() {
             title: testObj.title
         });
 
+        map.setCenter(marker.getPosition());
     }
 
     /*

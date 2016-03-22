@@ -70,12 +70,32 @@ $(document).ready(function() {
 		.done(function(data) {
 
 			$('.table-collection tbody').html('');
+
+			if(data.count >= 5) {
+				html = "<span class='disable-add-collection'>Nueva lista</span>";
+				$('.footer-collection').html(html);
+			}
+
+			console.log(data);
 			
-			$.each(data, function(key, val) {
+			$.each(data.collections, function(key, val) {
+
+				if (val.title == 'favoritos') {
+					var icon1 = "<i class='fa fa-favorite-border'></i>";
+				} else {
+					var icon1 = "<i class='fa fa-folder-open'></i>";
+				}
+
+				if (val.permissions == 0) {
+					var icon2 = "<i class='fa fa-earth'></i>";
+				} else {
+					var icon2 = "<i class='fa fa-lock'></i>";
+				}
+
 				var html = "<tr class='launch-save-collection'>" +
-					"<td class='td-icon icon-collection relative'><i class='fa fa-favorite-border'></i></td>" +
+					"<td class='td-icon icon-collection relative'>" + icon1 + "</td>" +
 					"<td>" + val.title + "</td>" +
-					"<td class='td-icon permission-collection relative'><i class='fa fa-lock'></i></td>" +
+					"<td class='td-icon permission-collection relative'>" + icon2 + "</td>" +
 					"</tr>";
 				$('.table-collection tbody').append(html);
 			});
@@ -107,17 +127,58 @@ $(document).ready(function() {
 
 	});
 
+	//parsear desde json, de stackoverflow, muy fiable:
+	//var json = '{"result":true,"count":1}',
+    //obj = JSON.parse(json);
+    //alert(obj.count);
+
+	$('.launch-new-collection').on('submit', function(event) {
+
+		event.preventDefault();
+
+		var t = $(this);
+		var url = t.attr('action');
+		var title = t.find('.inputcollection').val();
+		var permissions = t.find('.permissions').val();
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: { 'title': title, 'permissions': permissions }
+		})
+		.done(function(data) {
+			alert('aceptado');
+			$('.dropdown').parent().removeClass('open');
+			t.parent('.form-add-collection').hide().siblings('.btn-add-collection').show();
+
+		})
+		.fail(function(data) {
+
+			t.find('.errors-collection').html('');
+			var errors = data.responseJSON;
+			console.log(errors);
+			$.each(errors, function(key, val) {
+				var html = "<div><i class='fa fa-frown-btm'></i>" + val + "</div>";
+				t.find('.errors-collection').append(html);
+			});
+
+		})
+		.always(function() {
+
+		});
+	});
+
 
 /*
 	DROPDOWN MENU
 */
 
-
-
 	$('.dropdown').on('click', function(e) {
   		e.stopPropagation();
   		$('.dropdown').parent().removeClass('open');
+  		$('.dropdown').removeClass('white');
 		$(this).parent().toggleClass('open');
+		$(this).toggleClass('white');
 	});
   
   	$('html').on('click', '.dropdown-menu', function(e) {
@@ -126,12 +187,16 @@ $(document).ready(function() {
   
   	$('html').on('click', function(){
       	$('.dropdown').parent().removeClass('open');
+      	$('.dropdown').removeClass('white');
   	});
+
+
 
 
 /*
 	DATEPICKER & SELECT DATES
 */
+
     if($('body').is('.createpage')) {
 		/*traduccion*/
 		$.datepicker.regional['es'] = {
@@ -235,6 +300,7 @@ $(document).ready(function() {
 		t.siblings('.form-add-collection').show().find('.inputcollection').focus();
 	});
 
+
 /*
 	AUTO RESIZE COMMENT TEXTAREA
 */
@@ -245,6 +311,20 @@ $(document).ready(function() {
 			$(this).animate({height:62}, 'normal');
 		}
 	});
+
+/*
+	FLASH MESSAGES
+*/
+
+	$(function() {
+	    setTimeout(function() {
+	        $('.flash-message').fadeOut('slow');
+	    }, 5000);
+	});
+
+
+
+
 
 
 }); /*document ready*/

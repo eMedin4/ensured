@@ -61,7 +61,10 @@
 		Publicado
 		<span class="post-time">{{ $post->created_at->diffForHumans() }}</span>
 		por
-		<a href="#" class="username">{{ $post->user->name }}</a>		
+		<a href="{{ route('filteractivity', ['username' => $post->user->name]) }}" class="username">
+			{{ $post->user->name }}
+		</a>
+	
 	</h3>
 
 	<div class="sub-line"></div>

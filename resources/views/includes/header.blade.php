@@ -4,7 +4,7 @@
 
 		<div class="logo left">
 			  <a href="{{ route('main') }}">
-			    <h1>
+			    <h1 class="white-color">
 			    	9topus
 			    	<span>#Barcelona</span>
 			    </h1>
@@ -24,8 +24,8 @@
 			@else
 			    <li class="relative">
 			    	<span class="dropdown">{{ Auth::user()->name }}<i class="fa fa-chevron-down chevron"></i></span>
-					<ul class="dropdown-menu">
-						<li><a href="{{ route('activity', ['username' => Auth::user()->name ]) }}">Actividad</a></li>
+					<ul class="dropdown-menu user-dropdown-menu">
+						<li><a href="{{ route('filteractivity', ['username' => Auth::user()->name, 'filter' => 'todos' ]) }}">Actividad</a></li>
 						<li><a href="{{ route('logout') }}">Salir</a></li>				
 					</ul>
 			    </li>
@@ -64,5 +64,9 @@
 		</ul>
 
 	</div>
+
+	@if (Session::has('message'))
+		<div class="flash-message">{{Session::get('message')}}</div>
+	@endif
 
 </header>

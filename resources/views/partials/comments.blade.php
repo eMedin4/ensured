@@ -1,19 +1,21 @@
 
 @if (count($post->comments) > 0)
 
-	<div class="comments-head pb20">
-		<div class="nav-menu-head relative inline-block">
-			<i class="fa fa-comment-text-outline"></i>
-			COMENTARIOS
+	<div class="comments-head pb20 bold-weight">
+
+		<div class="comment-title relative inline-block">
+			<i class="fa fa-comment-text-outline"></i>Comentarios
 		</div>
+
 		<ul class="nav-menu inline right">
-			<li><span>{{ count($post->comments) }} @if (count($post->comments) == 1) Comentario @else Comentarios @endif</span></li>
-			<li class="relative"><span class="separator"></span></li>
-			<li><a class="active" href="http://localhost/ensured/public/eMedin4/actividad/articulos">Importantes primero</a></li>
-			<li class="relative"><span class="separator"></span></li>
-			<li><a href="http://localhost/ensured/public/eMedin4/actividad/articulos">Cronológico</a></li>
-			<li class="relative"><span class="separator"></span></li>
-			<li><a href="http://localhost/ensured/public/eMedin4/actividad/comentarios">Últimos primero</a></li>
+			<li><span>Total: {{ count($post->comments) }}</span></li>
+			<li class="relative">
+		    	<span class="dropdown">Importantes primero<i class="fa fa-chevron-down chevron"></i></span>
+				<ul class="dropdown-menu user-dropdown-menu">
+					<li><a href="#">Importantes primero</a></li>
+					<li><a href="#">Últimos primero</a></li>				
+				</ul>
+			</li>
 		</ul>
 	</div>
 
@@ -58,32 +60,22 @@
 
 @endif
 
-@if (Session::has('success'))
-	<div>Mensaje de sesion: {{Session::get('success')}}</div>
-@endif
-
-
-
-
-
-
 @if (count($errors) > 0)
-<div class="alert alert-danger">
-    <strong>Oops!</strong> Por favor corrige los errores debajo:<br><br>
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
+    <div class="info info-error mb20">
+        <i class="fa fa-frown"></i>
+        <h2>Uups...</h2>
+		<div>{{ $errors->first('content') }}</div>
+    </div>
 @endif
+
+
 
 
 @if (Auth::check()) 
 
 	<h3 class="grey">Escribe tu comentario</h3>
 
-	<form method="POST" action="{{ route('create') }}">
+	<form method="POST" id="form-link" action="{{ route('comment.create', ['id' => $post->id]) }}">
 
 	    {!! csrf_field() !!}
 

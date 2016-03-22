@@ -57,5 +57,10 @@ class User extends Authenticatable
         return true;
     }
 
+    public function collections()
+    {
+        return $this->hasMany(Collection::class);
+    }
+
 
 }

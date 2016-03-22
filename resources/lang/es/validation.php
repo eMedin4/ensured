@@ -110,7 +110,8 @@ return [
         'comment' => 'comentario',
         'location' => 'lugar',
         'content' => 'contenido',
-        'input-single-date' => 'fecha'
+        'input-single-date' => 'fecha',
+        'permissions' => 'El permiso'
     ],
 
 ];

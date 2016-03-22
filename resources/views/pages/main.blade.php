@@ -34,8 +34,7 @@
 	</div>
 
 	<script>
-	var testObj = {!! $toJs !!};
-	
+		var toJs = {!! $toJs !!};
 	</script>
 
 @endsection
