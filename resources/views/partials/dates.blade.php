@@ -10,7 +10,6 @@
 	@elseif ($date->date->isFuture())
 
 		@if ($setdata == 1)
-			<span class="extra-space"></span>
 			<div class="relative icon-more">
 				<i class="dropdown fa fa-more-horiz"></i>
 				<div class="dropdown-menu dropdown-dates">
@@ -38,7 +37,7 @@
 
 @if ($setdata == 0)
 
-	<span class="special-date past-date">pasado</span>
+	<span class="special-date past-date">terminado</span>
 
 @endif
 

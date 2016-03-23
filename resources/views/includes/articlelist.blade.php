@@ -37,17 +37,7 @@
 	{{-- meta --}}
 
 
-	<div class="meta-right h3">
-	
-		@include('partials.collections')
 
-		@if ($post->num_comments)
-			<div class="comments-count relative right">
-				<i class="fa fa-comment-text-outline"></i> 
-				{{ $post->num_comments }}
-			</div>
-		@endif
-	</div>
 
 	<div class="meta-left dark-purple">
 		<span class="dates relative pr10">
@@ -59,6 +49,19 @@
 			<i class="fa fa-location-arrow-outline"></i>
 			{{ $post->location }}
 		</span>
+	</div>
+
+	<div class="meta-right h3">
+
+		@if ($post->num_comments)
+			<div class="comments-count relative inline-block">
+				<i class="fa fa-comment-text-outline"></i> 
+				{{ $post->num_comments }}
+			</div>
+		@endif
+
+		@include('partials.collections')
+
 	</div>
 
 </article>

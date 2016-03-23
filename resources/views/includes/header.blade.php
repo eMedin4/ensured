@@ -2,6 +2,10 @@
 
 	<div class="inner-global-header">
 
+		<a class="nav-responsive" href="#">
+            <span class="nav-icon"></span>
+        </a>
+
 		<div class="logo left">
 			  <a href="{{ route('main') }}">
 			    <h1 class="white-color">
@@ -10,6 +14,8 @@
 			    </h1>
 			  </a>
 		</div>
+
+		<a class="map-responsive" href="#">Ver en mapa</a>
 
 		<ul class="main-menu inline">
 			

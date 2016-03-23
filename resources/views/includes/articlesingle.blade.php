@@ -33,39 +33,33 @@
 	<p class="pb10">{{ $post->content }}</p>
 
 	{{-- meta --}}
-	<div class="meta-right h3">
-	
-		@include('partials.collections')
-
-		@if ($post->num_comments)
-			<div class="comments-count relative right">
-				<i class="fa fa-comment-text-outline"></i> 
-				{{ $post->num_comments }}
-			</div>
-		@endif
-	</div>
-
-	<div class="meta-left h3 pb10">
-		<span class="dates relative purple pr10">
+	<div class="meta-left dark-purple pb10">
+		<span class="dates relative pr10">
 			<i class="fa fa-calendar-text icon-calendar"></i>
 			@include('partials.dates')
 		</span>
 
-		<span class="location relative purple">
+		<span class="location relative">
 			<i class="fa fa-location-arrow-outline"></i>
 			{{ $post->location }}
 		</span>
 	</div>
 
-	<h3 class="grey pb10 block">
-		Publicado
-		<span class="post-time">{{ $post->created_at->diffForHumans() }}</span>
-		por
-		<a href="{{ route('filteractivity', ['username' => $post->user->name]) }}" class="username">
-			{{ $post->user->name }}
-		</a>
+	<div class="meta-right h3">
+
+		@include('partials.collections')
+
+	</div>
 	
-	</h3>
+	<ul class="meta-single grey pb10 inline">
+		<li>Publicado <span class="post-time">{{ $post->created_at->diffForHumans() }}</span> por</li>
+		<li><a href="{{ route('filteractivity', ['username' => $post->user->name]) }}" class="username">{{ $post->user->name }}</a></li>
+		<li class="right"><a class="meta-link" href="#">reportar</a></li>
+		@if(Auth::check() && Auth::user()->id == $post->user->id)
+			<li class="right"><a class="meta-link" href="#">borrar</a></li>
+			<li class="right"><a class="meta-link" href="#">editar</a></li>
+		@endif
+	</ul>
 
 	<div class="sub-line"></div>
 

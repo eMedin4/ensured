@@ -8,7 +8,7 @@
 
 	<div class="content">
 
-		<div class="left-50">
+		<div class="left-50 map-wrap">
 			<div id="map"></div>
 		</div>
 		<div class="right-50">

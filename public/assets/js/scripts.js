@@ -323,8 +323,24 @@ $(document).ready(function() {
 	});
 
 
+/*
+	RESPONSIVE DESIGN
+*/
 
+	$('.nav-responsive').on("click", function(e){
+        e.preventDefault();
+        $(this).toggleClass('nav-show');
+        $('.main-menu').toggleClass('open-main-menu');
+        $('.home-wrap').toggleClass('home-wrap-toggle');
+    });
 
+	$('.map-responsive').on('click', function(e){
+		e.preventDefault();
+		$('.map-wrap').toggleClass('map-wrap-toggle');
+		/*Cambiar texto*/
+		var text = $(this).text();
+		$(this).text(text == 'Ver en mapa' ? 'Ocultar mapa' : 'Ver en mapa');
+	});
 
 
 }); /*document ready*/

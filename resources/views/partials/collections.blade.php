@@ -1,5 +1,5 @@
 
-<div class="relative right">
+<div class="relative inline-block right">
 
 	<div class="dropdown launch-collections tooltip-launch" data-post-id="{{ $post->id }}" data-url="{{ route('collections')}}">
 		<i class="fa fa-playlist-plus"></i>
