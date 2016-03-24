@@ -36,14 +36,6 @@ class PostController extends Controller
         return view('pages.main', compact('posts', 'title', 'toJs'));
     }    
 
-    public function score()
-    {
-
-    	$posts = $this->postRepository->paginateMaxScored();
-
-    	$title = "Esto es el score > 200";
-        return view('pages.main', compact('posts', 'title'));
-    }
 
     public function single($id)
     {
@@ -54,11 +46,13 @@ class PostController extends Controller
     	return view('pages.single', compact('post', 'toJs'));
     }
 
+
     public function create()
     {
-        $tags = Tag::all();
-        return view('pages.create', compact('tags'));
+        /*$tags = Tag::all();*/
+        return view('pages.create');
     }
+
 
     public function store(Request $request)
     {
@@ -86,6 +80,38 @@ class PostController extends Controller
         return Redirect::route('single', [$post->id, $post->title]);
 
     }
+
+
+    public function edit($id)
+    {
+        $post =Post::findOrFail($id);
+        return view('pages.edit', compact('post'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $rules = $this->rules($request->all());
+
+        if($rules['input-multi-dates-format'] == 'error') {
+            return Redirect::back()->withInput()->withErrors('hola');
+        }
+
+        $this->validate($request,$rules);
+
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->location = $request->input('location');
+        $post->content = $request->input('content');
+        $post->lat = $request->input('lat');
+        $post->lng = $request->input('lng');
+        $post->url = $request->input('url');
+        $post->user_id = Auth::user()->id;
+        $post->save();  
+        
+        return Redirect::route('single', [$post->id, $post->title]);      
+
+    }
+
 
     public function rules($data)
     {

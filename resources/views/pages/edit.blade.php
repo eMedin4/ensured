@@ -10,11 +10,13 @@
 
 	<div class="limit p30 white-background">
 
-		<h1 class="big-title pb3"> Añade tu contenido </h1>
+		<h1 class="big-title pb3"> Edita tu publicación </h1>
 
 		@include('partials.instructions')
 
-		<form method="POST" action="{{ route('create') }}">
+		<form method="POST" action="{{ route('update', $post->id) }}">
+
+			{!! method_field('PATCH') !!}
 
 		    {!! csrf_field() !!}
 
@@ -33,9 +35,9 @@
 			</div>
 
 			<div class="pb20">
-				@include('partials.formend', ['submitText' => 'Enviar Publicación'])
+				@include('partials.formend', ['submitText' => 'Actualizar'])
 			</div>
-            
+
 		</form>
 
 	</div>

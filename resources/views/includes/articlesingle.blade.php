@@ -57,7 +57,7 @@
 		<li class="right"><a class="meta-link" href="#">reportar</a></li>
 		@if(Auth::check() && Auth::user()->id == $post->user->id)
 			<li class="right"><a class="meta-link" href="#">borrar</a></li>
-			<li class="right"><a class="meta-link" href="#">editar</a></li>
+			<li class="right"><a class="meta-link" href="{{ route('edit', $post) }}">editar</a></li>
 		@endif
 	</ul>
 

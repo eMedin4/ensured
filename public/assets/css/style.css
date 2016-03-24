@@ -92,6 +92,7 @@ table {
 .pb40 { padding-bottom: 40px; }
 .mb10 { margin-bottom: 10px; }
 .mb20 { margin-bottom: 20px; }
+.mb30 { margin-bottom: 30px; }
 .mb40 { margin-bottom: 40px; }
 .pr5 { padding-right: 5px; }
 .pr10 { padding-right: 10px; }
@@ -321,6 +322,7 @@ h1, .h1 {
 	font-weight: 500;
 	line-height: 44px;
 	letter-spacing: -1px;
+	margin-left: -1px;
 }
 
 .logo h1,
@@ -354,6 +356,7 @@ h4, .h4 {
 	font-size: 60px;
 	font-weight: 500;
 	padding-bottom: 12px;
+	margin-left: -2px;
 }
 
 .h1-mini {
@@ -544,9 +547,9 @@ i.fa-location-arrow-outline {
 	#FORMS
 */
 
-::-webkit-input-placeholder { color: #777; }
-::-moz-placeholder { color: #777; opacity:  1; }
-:-ms-input-placeholder { color: #777; }
+::-webkit-input-placeholder { color: #bbb; }
+::-moz-placeholder { color: #bbb; opacity:  1; }
+:-ms-input-placeholder { color: #bbb; }
 
 input, 
 textarea {
@@ -572,9 +575,6 @@ button,
     border: none;
     padding: 6px 12px;
     color: #fff;
-    text-transform: uppercase;
-    font-size: 14px;
-    letter-spacing: 1px;
     font-weight: 300;
     cursor: pointer;
     transition: all .15s ease-in;
@@ -871,14 +871,14 @@ select {
 }
 
 .instructions {
-    font-size: 14px;
-    line-height: 18px;
-    background: #F0F0F0;
-    padding: 15px 20px 10px;
+    background-color: #fcf8e3;
+    color: #8a6d3b;
+    border: 1px solid #faebcc;
+    padding: 13px 15px 6px;
 }
 
 .instructions li {
-	padding-bottom: 5px;
+	padding-bottom: 8px;
 }
 
 .instructions span {
@@ -1103,7 +1103,7 @@ a.meta-link:hover {
 
 	.content-multi-dates {
 		display: none;
-		margin-top: 5px;
+		margin-top: 8px;
 	}
 
 	.pick-multi-dates {
@@ -1423,8 +1423,8 @@ a.meta-link:hover {
 	.label-checkbox:before,
 	.label-radio:before {
 	    content: "";
-	    width: 16px;
-	    height: 16px;
+	    width: 15px;
+	    height: 15px;
 	    position: absolute;
 	    left: 0;
 	    bottom: 1px;
@@ -1446,7 +1446,7 @@ a.meta-link:hover {
 	input[type=radio]:checked + .label-radio:before {
 	    content: "\2022";
 	    color: #555;
-	    font-size: 44px;
+	    font-size: 42px;
 	    line-height: 10px;
 	    text-align: center;
 	}
@@ -1723,5 +1723,3 @@ a.meta-link:hover {
 	} 
 
 }
-
-/*ççç*/

@@ -35,7 +35,7 @@
 						<li><a href="{{ route('logout') }}">Salir</a></li>				
 					</ul>
 			    </li>
-			    <li><a href="{{ route('create') }}">Nuevo</a></li>
+			    <li><a href="{{ route('create') }}">Publicar</a></li>
 			@endif
 
 			<li class="relative">

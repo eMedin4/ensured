@@ -35,7 +35,13 @@ Route::group(['middleware' => 'web'], function () {
             ['as' => 'single', 'uses' => 'PostController@single'])->where('id', '[0-9]+');
 
         Route::post('votarpost', 
-            ['as' => 'postvote', 'uses' => 'VoteController@postvote']);  
+            ['as' => 'postvote', 'uses' => 'VoteController@postvote']); 
+
+        Route::get('/editar/{id}',
+            ['as' => 'edit', 'uses' => 'PostController@edit'])->where('id', '[0-9]+'); 
+
+        Route::patch('/editar/{id}',
+            ['as' => 'update', 'uses' => 'PostController@update']);
 
 
     /*
