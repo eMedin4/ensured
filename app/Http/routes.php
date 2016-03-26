@@ -1,9 +1,10 @@
 <?php
 
-
 Route::get('test4', function () {
     return 'test4';
 });
+
+Route::group(['middleware' => 'web'], function () {
 
 
     /*
