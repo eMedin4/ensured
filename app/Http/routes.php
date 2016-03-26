@@ -1,5 +1,4 @@
 <?php
-Route::
 
 
 Route::get('test4', function () {
