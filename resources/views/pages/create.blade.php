@@ -10,7 +10,7 @@
 
 	<div class="limit p30 white-background">
 
-		<h1 class="big-title pb3"> Añade tu contenido </h1>
+		<h1 class="big-title pb10"> Añade tu contenido </h1>
 
 		@include('partials.instructions')
 
@@ -49,3 +49,4 @@
 	<script src="{{ asset('/assets/js/jquery-ui.multidatespicker.js') }}"></script>
 
 @endsection
+

@@ -547,9 +547,9 @@ i.fa-location-arrow-outline {
 	#FORMS
 */
 
-::-webkit-input-placeholder { color: #bbb; }
-::-moz-placeholder { color: #bbb; opacity:  1; }
-:-ms-input-placeholder { color: #bbb; }
+::-webkit-input-placeholder { color: #bbb; letter-spacing: -0.5px; }
+::-moz-placeholder { color: #bbb; opacity:  1; letter-spacing: -0.5px; }
+:-ms-input-placeholder { color: #bbb; letter-spacing: -0.5px; }
 
 input, 
 textarea {
@@ -567,6 +567,31 @@ textarea:focus {
 
 input[type="radio"] {
 	width: auto;
+}
+
+.search-box {
+	width: 50%;
+}
+
+.search-box .wrapper {
+	padding-right: 80px;
+}
+
+.search-box input {
+	border: none;
+    padding: 6px 12px;
+    margin: 7px 0;
+    border-radius: 0;
+}
+
+.search-box button {
+	background: #FFF;
+    color: #333;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+	float: right;
+    margin-top: -39px;
+    width: 80px;
 }
 
 button,
@@ -871,19 +896,17 @@ select {
 }
 
 .instructions {
-    background-color: #fcf8e3;
-    color: #8a6d3b;
-    border: 1px solid #faebcc;
-    padding: 13px 15px 6px;
-}
-
-.instructions li {
-	padding-bottom: 8px;
+    border: 1px solid #A0C5E4;
+    background-color: #ECF3FA;
+    color: #428BCA;
+    font-size: 14px;
+    padding: 8px 12px;
 }
 
 .instructions span {
-	font-weight: 500;
-    padding-right: 3px;
+	color: #333;
+	font-weight: 400;
+	font-size: 16px;
 }
 
 .text-info {
@@ -1156,15 +1179,15 @@ a.meta-link:hover {
 
 	.dropdown-menu {
 		position: absolute;
-	    top: 100%;
-	    left: -10px;
+	    top: 0;
+	    left: 200px;
+	    right: 4px;
 	    z-index: 1000;
 	    display: none;
 	    min-width: 160px;
-	    padding: 12px 0;
-	    background-color: #fff;
-	    border: 1px solid rgba(0, 0, 0, 0.2);
-	    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    	padding: 0 10px;
+	    background-color: #333;
+
 	}
 
 	.user-dropdown-menu {
@@ -1193,11 +1216,6 @@ a.meta-link:hover {
 		color: #fff;
 	}
 
-	.dropdown-search {
-		left: -100px;
-    	width: 250px;
-    	padding: 0 10px;
-	}
 
 	/*collections*/
 
@@ -1221,9 +1239,12 @@ a.meta-link:hover {
 		top: 31px;
 	    right: -10px;
 	    left: auto;
+	    background: #fff;
 	    color: #111;
 	    text-align: center;
-	    padding-bottom: 0;
+	    padding-top: 12px;
+	    border: 1px solid rgba(0, 0, 0, 0.2);
+    	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
 	}
 
 	.dropdown-collections:after {
@@ -1553,15 +1574,15 @@ a.meta-link:hover {
 
 	.flash-message {
 	    position: absolute;
-	    top: 38px;
+	    top: 50px;
 	    left: 0;
 	    right: 0;
 	    margin-left: auto;
 	    margin-right: auto;
 	    width: 40%;	
-		background: #51805A;
-		color: #fff;
-		padding: 12px 20px;
+		background: rgba(0,0,0,0.8);
+		color: #F0E9FF;
+		padding: 8px 20px;
     	text-align: center;
 	}
 

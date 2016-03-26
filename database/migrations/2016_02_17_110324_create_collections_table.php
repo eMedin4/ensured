@@ -14,8 +14,8 @@ class CreateCollectionsTable extends Migration
     {
         Schema::create('collections', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title', 200);
-            $table->smallinteger('permissions');
+            $table->string('title', 20);
+            $table->tinyInteger('permissions');
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             //cuando se elimine un usario manten el post y su user_id a null.
@@ -37,6 +37,7 @@ class CreateCollectionsTable extends Migration
      */
     public function down()
     {
+        Schema::drop('collection_post');
         Schema::drop('collections');
     }
 }

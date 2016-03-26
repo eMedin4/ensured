@@ -28,7 +28,7 @@
 			    </li>
 
 			@else
-			    <li class="relative">
+			    <li>
 			    	<span class="dropdown">{{ Auth::user()->name }}<i class="fa fa-chevron-down chevron"></i></span>
 					<ul class="dropdown-menu user-dropdown-menu">
 						<li><a href="{{ route('filteractivity', ['username' => Auth::user()->name, 'filter' => 'todos' ]) }}">Actividad</a></li>
@@ -38,21 +38,23 @@
 			    <li><a href="{{ route('create') }}">Publicar</a></li>
 			@endif
 
-			<li class="relative">
+			<li>
 				<span class="dropdown">Buscar<i class="fa fa-chevron-down chevron"></i>
 				</span>
-				<div class="dropdown-menu dropdown-search">
+				<div class="dropdown-menu">
 					<form method="POST" action="{{ route('create') }}">
 			    		{!! csrf_field() !!}
-			    		<div class="search-box relative">
-	    					<input type="text" name="title" id="title" value="{{ old('title') }}" placeholder="Busca en los artículos">
-	    					<i class="fa fa-search-btb"></i>
+			    		<div class="search-box right relative">
+			    			<div class="wrapper">
+	    						<input type="text" name="title" id="title" value="{{ old('title') }}" placeholder="Busca en los artículos">
+	    					</div>
+	    					<button type="submit" class="btn">Buscar »</button>
     					</div>
     				</form>
 				</div>
 			</li>
 
-			<li class="relative">
+			<li>
 				<span class="dropdown">Por fecha<i class="fa fa-chevron-down chevron"></i>
 				</span>
 				<ul class="dropdown-menu">

@@ -24,8 +24,8 @@ class PostRepository {
     	return $this->selectPostsList()
         ->orderBy('score', 'DESC')
         ->paginate(10);
-
     }
+
 
     public function time($where)
     {

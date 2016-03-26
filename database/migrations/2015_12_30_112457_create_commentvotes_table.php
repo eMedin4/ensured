@@ -21,7 +21,7 @@ class CreateCommentvotesTable extends Migration
             $table->integer('comment_id')->unsigned();
             $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
             //cuando se elimine un comentario que se elimnen tambien sus commentvotes
-            $table->boolean('direction');
+            $table->tinyinteger('direction');
         });
 
         DB::statement('ALTER TABLE `commentvotes` ADD `ip_address` VARBINARY(16)');

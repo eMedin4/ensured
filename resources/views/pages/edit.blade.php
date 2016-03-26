@@ -6,6 +6,8 @@
 
 @section('content')
 
+
+
 <div class="content content-limit">
 
 	<div class="limit p30 white-background">

@@ -84,7 +84,7 @@ class PostController extends Controller
 
     public function edit($id)
     {
-        $post =Post::findOrFail($id);
+        $post = $this->postRepository->single($id);
         return view('pages.edit', compact('post'));
     }
 

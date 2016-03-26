@@ -1,8 +1,10 @@
 <?php
+Route::
 
 
-
-Route::group(['middleware' => 'web'], function () {
+Route::get('test4', function () {
+    return 'test4';
+});
 
 
     /*
