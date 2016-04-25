@@ -3,7 +3,7 @@ function initialize() {
 
 
 	var marker, i;
-	var icon = 'http://ifithappens.net/ensured/public/assets/images/def4.png';
+	var icon = 'http://ifithappens.net/assets/images/def4.png';
     var center = {lat: 41.38506, lng: 2.17340};
 
 	var map = new google.maps.Map(document.getElementById('map'), {
