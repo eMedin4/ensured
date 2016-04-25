@@ -4,7 +4,9 @@ namespace Ensured\Http\Controllers;
 
 use Auth;
 use URL;
+use Socialite;
 use Ensured\Entities\User;
+use Ensured\Entities\Social;
 use Ensured\Entities\Collection;
 use Illuminate\Http\Request;
 
@@ -87,5 +89,59 @@ class AuthController extends Controller
         $title = "Perfil";
         return view('pages.profile', compact('user', 'title'));    
     }
+
+
+    public function redirectToProvider($provider=null)
+    {
+        if(!config('services.' . $provider)) abort('404');
+        return Socialite::driver($provider)->redirect();
+    }
+
+
+    public function handleProviderCallback($provider=null)
+    {
+
+        $user = Socialite::driver($provider)->user();
+
+        if($user) {
+
+
+            if ($the_user = Social::where('uid_provider', $user->id)->first()) {
+                Auth::loginUsingId($the_user->user_id);
+            } else {
+                $this->newUserFromSocial($user, $provider);
+            }
+
+            return redirect()->route('main');
+
+        } else {
+            return 'algo fue mal';
+        }
+    }
+
+    public function newUserFromSocial($user, $provider)
+    {
+        $new_user = New User;
+        $new_user->name = $user->name;
+        $new_user->email = $user->email;
+        $new_user->avatar = $user->avatar;
+        $new_user->social = 1;
+        $new_user->save();
+        
+        $social = New Social;
+        $social->user_id = $new_user->id;
+        $social->provider = $provider;
+        $social->uid_provider = $user->id;
+        $social->save();
+
+        $collection = New Collection();
+        $collection->title = 'favoritos';
+        $collection->user_id = $new_user->id;
+        $collection->save();
+
+        Auth::login($new_user);
+    }
+
+
 }
 

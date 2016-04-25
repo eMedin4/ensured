@@ -43,11 +43,8 @@ class CollectionController extends Controller
 	        return back(); 
 	    }
 
-        $collection = new Collection();
-        $collection->title = 'favoritos';
-        $collection->user_id = Auth::user()->id;
-        $collection->save();
-        $collection->posts()->attach($request->post_id);  
+        $collection = Collection::find($request->collection_id);
+        $collection->posts()->attach($request->post_id);
             
     	return response()->json(['name' => $request->post_id, 'state' => '4']);
 
@@ -59,7 +56,6 @@ class CollectionController extends Controller
         if( ! $request->ajax()) {       
             return back(); 
         }
-
 
         $this->validate($request, [
             'title' => 'required|max:16',
@@ -73,6 +69,18 @@ class CollectionController extends Controller
         $collection->save();
             
         return response()->json(['name' => $request->post_id, 'success' => true, 'message' => 'mensaje a enviar']);
+
+    }
+
+    public function menu(Request $request)
+    {
+
+        if( ! $request->ajax()) {       
+            return back(); 
+        }
+
+        $collections = Collection::where('user_id', Auth::user()->id)->get();
+        return response()->json(['collections' => $collections]);
 
     }
 

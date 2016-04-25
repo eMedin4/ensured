@@ -8,6 +8,7 @@
 	<title>I ♥ HTML - @yield('title')</title>
 	<script src="https://use.typekit.net/ocy2tfu.js"></script>
 	<script>try{Typekit.load({ async: true });}catch(e){}</script>
+	<link rel="stylesheet" href="{{ asset('/assets/css/style2.css') }}">
 	<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
 	<script src="http://use.fonticons.com/73e4e1b7.js"></script>
 </head>
@@ -25,6 +26,7 @@
 		<script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<script src="{{ asset('/assets/js/scripts.js') }}"></script>
+		<script src="{{ asset('/assets/js/scripts2.js') }}"></script>
 		<script src="{{ asset('/assets/js/map.js') }}"></script>
 
 	<!--Page scripts-->

@@ -1,6 +1,6 @@
 @if (count($errors) > 0)
-    <div class="info info-error mb20">
-        <i class="fa fa-frown"></i>
+    <div class="info info-error">
+        <i class="fa fa-frown-o"></i>
         <h2>Uups...</h2>
 
 		    <div>{{ $errors->first('title') }}</div>

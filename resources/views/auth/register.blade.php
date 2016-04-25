@@ -1,14 +1,12 @@
-@extends('layouts.master')
+@extends('layouts.board')
 
-@section('title', 'Entra con tu usuario')
+@section('title', 'Regístrate')
 
 @section('bodyclass', 'registerpage')
 
-@section('content')
+@section('main')
 
-<div class="content content-limit">
 
-    <div class="limit p40">
 
         <h1 class="sub-line"> Regístrate </h1>
 
@@ -46,8 +44,7 @@
 
             </form>
         </div>
-    </div>
-</div>
+
 
 @endsection
 

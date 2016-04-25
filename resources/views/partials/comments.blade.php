@@ -45,13 +45,6 @@
 
 @else
 
-	<div class="comments-head pb20">
-		<div class="nav-menu-head relative inline-block">
-			<i class="fa fa-comment-text-outline"></i>
-			COMENTARIOS
-		</div>
-	</div>
-
 	<div class="comments-empty mb20">
 		Sin comentarios
 	</div>
@@ -73,18 +66,16 @@
 
 @if (Auth::check()) 
 
-	<h3 class="grey">Escribe tu comentario</h3>
-
-	<form method="POST" id="form-link" action="{{ route('comment.create', ['id' => $post->id]) }}">
+	<form method="POST" class="form-comments" id="form-link" action="{{ route('comment.create', ['id' => $post->id]) }}">
 
 	    {!! csrf_field() !!}
 
 	    <div class="form-group">
-	    	<textarea name="content" id="content" class="input-comment" maxlength="20000">{{ old('content') }}</textarea>
+	    	<textarea name="content" id="content" class="input-comment" maxlength="20000" placeholder="Coméntalo">{{ old('content') }}</textarea>
 		</div>
 
 		<div class="form-group">
-			<button type="submit" class="btn">Enviar</button>
+			<button type="submit" class="btn">Enviar comentario</button>
 		</div>
 
 	</form>

@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'Ensured\Events\SomeEvent' => [
             'Ensured\Listeners\EventListener',
         ],
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            'SocialiteProviders\Instagram\InstagramExtendSocialite@handle',
+        ],
     ];
 
     /**

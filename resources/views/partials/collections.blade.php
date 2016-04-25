@@ -1,14 +1,13 @@
 
-<div class="relative inline-block right">
 
-	<div class="dropdown launch-collections tooltip-launch" data-post-id="{{ $post->id }}" data-url="{{ route('collections')}}">
-		<i class="fa fa-playlist-plus"></i>
+	<span class="tooltip-launch">
 		<div class="tooltip">Listas</div>
-	</div>
 
-	@if (Auth::check())
-		<div class="dropdown-menu dropdown-collections pb10">
-			<div class="header-collection h1-mini mini-sub-line">Guárdalo en una lista</div>
+		<i class="fa fa-playlist-plus icon-collections launch-dd-menu launch-collections" data-post-id="{{ $post->id }}" data-url="{{ route('collections')}}"></i>
+
+		@if (Auth::check())
+		<div class="dd-menu collections-menu">
+			<div class="header-collection">Guárdalo en una lista</div>
 			<div class="content-collection tleft">
 				<table class="table-collection" data-post-id="{{ $post->id }}" data-url="{{ route('savecollection')}}">
 					<tbody>
@@ -35,8 +34,8 @@
 			</div>
 		</div> 
 
-	@else
-		<div class="dropdown-menu dropdown-collections pb10">
+		@else
+		<div class="dd-menu collections-menu">
 			<div class="header-collection h1-mini mini-sub-line">Guárdalo en una lista</div>
 			<div class="content-collection content-collection-guest">Puedes marcar este artículo y guardarlo en tus favoritos o crear tus propias listas.</div>
 			<div class="footer-collection footer-collection-guest">
@@ -45,6 +44,9 @@
 			    <a href="{{ route('getregister') }}">Regístrate</a>
 			</div>
 		</div>
-	@endif
+		@endif
+		
+	</span>
 
-</div>
+
+

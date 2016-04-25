@@ -16,7 +16,7 @@ class Post extends Model
     /**
      * The attributes that should be visible in json
      */
-    protected $visible = ['title', 'content', 'num_votes', 'lat', 'lng', 'id'];
+    protected $visible = ['title', 'content', 'location', 'num_votes', 'lat', 'lng', 'id', 'tags'];
 
     public function user() //singular porque solo pertenece a un usuario
     {
@@ -51,6 +51,11 @@ class Post extends Model
     	//foreach ($post->tags as $tag)
     	//Tambien podemos acceder a todos los tags añadiendo condiciones
     	//$tags = Post::find(1)->tags()->orderBy()->get();
+    }
+
+    public function collections()
+    {
+        return $this->belongsToMany(Collection::class);
     }
 
     public function getSlugAttribute() 

@@ -25,6 +25,12 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('registro',
             ['as' => 'postregister', 'uses' => 'AuthController@postRegister']);
 
+        Route::get('social/login/redirect/{provider?}', 
+            ['as' => 'social.login', 'uses' => 'AuthController@redirectToProvider']);
+        Route::get('social/login/{provider?}', 'AuthController@handleProviderCallback');
+        Route::get('social/login/twitter/getmail',
+            ['as' => 'getTwitterMail', 'uses' => 'AuthController@getTwitterMail']);
+
 
     /*
         POSTS
@@ -47,7 +53,7 @@ Route::group(['middleware' => 'web'], function () {
 
 
     /*
-        FILTER BY DATES
+        POST FILTERS
     */
 
         Route::get('hoy', 
@@ -67,6 +73,14 @@ Route::group(['middleware' => 'web'], function () {
 
         Route::get('pasados', 
             ['as' => 'pasts', 'uses' => 'RefinePostController@pasts']);
+
+        Route::get('listas/{id}/{collection}',
+            ['as' => 'byCollection', 'uses' => 'RefinePostController@byCollection']);
+
+        Route::get('buscar',
+            ['as' => 'search', 'uses' => 'RefinePostController@search']);
+
+
 
     /*
         USERS
@@ -96,11 +110,21 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('nuevo', 
     	['as' => 'store', 'uses' => 'PostController@store']);
 
+    Route::post('livesearch', 
+        ['as' => 'livesearch', 'uses' => 'SearchController@liveSearch']);
+
+    Route::post('tagsearch', 
+        ['as' => 'tagsearch', 'uses' => 'SearchController@tagSearch']);
+
     Route::post('comentar/{id}', 
     	['as' => 'comment.create', 'uses' => 'CommentController@store']);
 
     Route::post('votarcomentario',
         ['as' => 'commentvote', 'uses' => 'CommentController@commentvote']);
+
+    /*
+        COLECCIONES
+    */
 
     Route::post('colecciones',
         ['as' => 'collections', 'uses' => 'CollectionController@show']);
@@ -111,6 +135,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('nuevacoleccion',
         ['as' => 'newcollection', 'uses' => 'CollectionController@add']);
 
+    Route::post('listas',
+        ['as' => 'menucollection', 'uses' => 'CollectionController@menu']);
 
 
 

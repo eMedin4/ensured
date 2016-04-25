@@ -155,8 +155,12 @@ return [
         Ensured\Providers\AuthServiceProvider::class,
         Ensured\Providers\EventServiceProvider::class,
         Ensured\Providers\RouteServiceProvider::class,
+        Ensured\Providers\ComposerServiceProvider::class,
 
         Barryvdh\Debugbar\ServiceProvider::class,
+
+        //Laravel\Socialite\SocialiteServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
 
     ],
 
@@ -204,7 +208,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
-
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        
     ],
 
 ];

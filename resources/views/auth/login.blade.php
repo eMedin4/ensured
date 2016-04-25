@@ -1,57 +1,62 @@
-@extends('layouts.master')
-
+@extends('layouts.center')
 @section('title', 'Entra con tu usuario')
-
 @section('bodyclass', 'loginpage')
 
-@section('content')
+@section('main')
 
-<div class="content content-limit">
+    <h1 class="account-title">iFiTHAPPENS</h1>
 
-    <div class="limit p40">
-
-        <h1 class="sub-line"> Entra con tu usuario </h1>
-
-        <div class="auth-form">
-
-            @if (Session::get('message'))
-                <div class="info info-error mb20">
-                    <i class="fa fa-frown"></i>
-                    <h2>Uups...</h2>
-                    <p>{{ Session::get('message') }}</p>
-                </div>
-            @endif
-
-            <form method="POST" action="{{ route('postlogin') }}">
-            {!! csrf_field() !!}
-
-                <div class="form-group pb10">
-                    <label for="user">Nombre de usuario o email</label>
-                    <input type="text" name="user" id="user" value="{{ old('user') }}">
-                </div>
-
-                <div class="form-group pb10">
-                    <label for="password">Contraseña</label>
-                    <input type="password" name="password" id="password">
-                </div>
-
-                <div class="form-group pb15">
-                    <input type="checkbox" name="remember" id="remember">
-                    <label for="remember" class="label-checkbox">Recuérdame</label>
-                </div>
-
-                <div class="form-group pb10">
-                    <button type="submit" class="btn">Entra</button>
-                </div>
-
-                <div class="h5">
-                    <a class="btn btn-link" href="{{ url('/password/reset') }}">¿Has olvidado tu contraseña?</a>
-                </div>
-
-            </form>
-        </div>
+    <div class="account-text">
+        <span>Entra con tu cuenta</span>
+        <div class="back-line"></div>
     </div>
 
-</div>
+    <div class="account-flex">
+        <div><a class="social-btn facebook" href="{{ route('social.login', ['facebook']) }}">
+            <i class="fa fa-facebook"></i>
+            <span>Entra con <strong>Facebook</strong></span>
+        </a></div>
+
+        <div><a class="social-btn google" href="{{ route('social.login', ['google']) }}">
+            <i class="fa fa-google"></i>
+            <span>Entra con <strong>Google</strong></span>
+        </a></div>
+    </div>
+
+<!--     <div class="account-flex pb40">
+        <div><a class="social-btn instagram" href="{{ route('social.login', ['instagram']) }}">
+            <i class="fa fa-social-instagram"></i>
+            <span>Entra con <strong>Instagram</strong></span>
+        </a></div>
+
+        <div><a class="social-btn twitter" href="{{ route('social.login', ['twitter']) }}">
+            <i class="fa fa-twitter"></i>
+            <span>Entra con <strong>Twitter</strong></span>
+        </a></div>
+    </div> -->
+
+    <div class="account-text">
+        <span>O con tu email</span>
+        <div class="back-line"></div>
+    </div>
+
+    @if (Session::get('message'))
+        <div class="info info-error mb20">
+            <i class="fa fa-frown"></i>
+            <h2>Uups...</h2>
+            <p>{{ Session::get('message') }}</p>
+        </div>
+    @endif
+
+    <form method="POST" action="{{ route('postlogin') }}">
+        {!! csrf_field() !!}
+        <div class="account-flex pb10">
+            <div><input type="text" name="user" id="user" value="{{ old('user') }}" placeholder="Usuario o email"></div>
+            <div><input type="password" name="password" id="password" placeholder="Contraseña"></div>
+        </div>
+        <div class="account-flex">
+            <div><button type="submit" class="btn account-btn">Entra con tu <strong>email</strong></button></div>
+        </div>
+    </form>
 
 @endsection

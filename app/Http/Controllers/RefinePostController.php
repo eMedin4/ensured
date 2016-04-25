@@ -74,4 +74,21 @@ class RefinePostController extends Controller
     	$toJs = $posts->toJson();
         return view('pages.main', compact('posts', 'title', 'toJs'));
     }
+
+    public function byCollection($id, $collection)
+    {
+        $posts = $this->postRepository->collection($id);
+        $title = $collection;
+        $toJs = $posts->toJson();
+        return view('pages.main', compact('posts', 'title', 'toJs'));
+    }
+
+    public function search(Request $request)
+    {
+        $keywords = preg_split('/\s\s+/', $request->title);
+        $posts = $this->postRepository->search($keywords);
+        $title = 'búsqueda';
+        $toJs = $posts->toJson();
+        return view('pages.main', compact('posts', 'title', 'toJs'));
+    }
 }

@@ -1,67 +1,55 @@
 
-<article class="pb40 mainarticle" data-id="{{ $post->id }}" data-link = {{ route('single', ['id' => $post, 'title' => $post->slug]) }}>
+<article class="post-list flex-row" data-id="{{ $post->id }}" data-link = {{ route('single', ['id' => $post, 'title' => $post->slug]) }}>
 
-	<header>
+	<div class="post-top">
 		@include('partials.votes')
-		<h1 class="h1-mini toinline">
-			<a href="{{ route('single', ['id' => $post, 'title' => $post->slug]) }}">
-				{{ $post->title }}
-			</a>
-		</h1>
-	</header>
-
-	{{-- url and tags --}}
-	<div class="post-more pb2">
-		@if ( $post->url )
-			<p class="url pr10 inline-block">
-				<a href="{{ $post->url }}" target="_blank" rel="nofollow">
-					<img src="http://www.google.com/s2/favicons?domain={{ $post->url }}">
-					{{ $post->urldomain }}
-				</a>
-			</p>
-		@endif
-
- 		@if (!$post->tags->isEmpty())
-			<p class="show-tags inline-block relative">
-				<i class="fa fa-tag-outline"></i>
-				@foreach($post->tags as $i => $tag)
-					<span class="tag">{{ $tag->name }}</span>
-				@endforeach
-			</p>
-		@endif 
 	</div>
 
-	{{-- content --}}
-	<p class="pb4">{{ $post->extract }}</p>
+	<div class="post-main">
 
-	{{-- meta --}}
+		<h1><a href="{{ route('single', ['id' => $post, 'title' => $post->slug]) }}">{{ $post->title }}</a></h1>
 
+		@if ($post->url || !$post->tags->isEmpty())
+			<div class="post-meta">
 
+				@if ($post->url)
+					<a class="post-link" href="{{ $post->url }}" target="_blank" rel="nofollow">
+						<img src="http://www.google.com/s2/favicons?domain={{ $post->url }}">
+						{{ $post->urldomain }}
+					</a>
+				@endif
 
-
-	<div class="meta-left dark-purple">
-		<span class="dates relative pr10">
-			<i class="fa fa-calendar-text icon-calendar"></i>
-			@include('partials.dates')
-		</span>
-
-		<span class="location relative">
-			<i class="fa fa-location-arrow-outline"></i>
-			{{ $post->location }}
-		</span>
-	</div>
-
-	<div class="meta-right h3">
-
-		@if ($post->num_comments)
-			<div class="comments-count relative inline-block">
-				<i class="fa fa-comment-text-outline"></i> 
-				{{ $post->num_comments }}
+		 		@if (!$post->tags->isEmpty())
+					<p class="post-tags">
+						<i class="fa fa-tag-outline"></i>
+						<?php $prefix = ''; ?>
+						@foreach($post->tags as $i => $tag)<?php echo $prefix; ?> <a href="#">{{ $tag->name }}</a><?php $prefix = ',' ?>@endforeach
+					</p>
+				@endif 
 			</div>
 		@endif
 
-		@include('partials.collections')
+		<p class="post-extract">{{ $post->extract }}</p>
 
-	</div>
+		<div class="post-info">
+
+			<div class="post-info-left">
+				<i class="fa fa-calendar-text icon-calendar"></i>
+				@include('partials.dates')
+				<i class="fa fa-location-arrow-outline icon-location"></i>
+				{{ $post->location }}
+			</div>
+
+			<div class="post-info-right">
+				@if ($post->num_comments)
+					<i class="fa fa-comment-text-outline icon-comments"></i> 
+					<span class="post-comments-count">{{ $post->num_comments }}</span>
+				@endif	
+				<span class="post-collections">@include('partials.collections')</span>
+			</div>
+
+		</div>
+
+	</div><!-- post-main -->
 
 </article>

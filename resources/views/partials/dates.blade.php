@@ -10,7 +10,7 @@
 	@elseif ($date->date->isFuture())
 
 		@if ($setdata == 1)
-			<div class="relative icon-more">
+			<div class="icon-more">
 				<i class="dropdown fa fa-more-horiz"></i>
 				<div class="dropdown-menu dropdown-dates">
 					@foreach($post->dates as $date)

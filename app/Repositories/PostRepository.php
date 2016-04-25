@@ -39,6 +39,36 @@ class PostRepository {
             ->paginate(10);
     }
 
+    public function collection($id)
+    {
+        return $this->selectPostsList()
+            ->whereHas('collections', function ($query) use($id) {
+                $query->where('collection_id', $id);
+            })
+            ->paginate(10);
+    }
+
+    public function tag($tag)
+    {
+        return $this->selectPostsList()
+            ->whereHas('tags', function ($query) {
+                $query->whereIn('tag_id', [3,1]);
+            })
+            ->paginate(10);
+    }
+
+    public function search($keywords)
+    {
+        return $this->selectPostsList()
+            ->where(function ($query) use ($keywords) {
+                foreach ($keywords as $word) {
+                    $query->orWhere('title', 'like', "%{$word}%");
+                    $query->orWhere('content', 'like', "%{$word}%");
+                }
+            })
+            ->paginate(10);
+    }
+
     public function paginateMaxScored()
     {
     	return $this->selectPostsList()

@@ -1,40 +1,29 @@
-@extends('layouts.master')
+@extends('layouts.split')
 
-
+@section('title', 'Portada, todo lo que ocurre a tu alrededor')
 
 @section('bodyclass', 'mainpage')
 
-@section('content')
+@section('main')
 
-	<div class="content">
+		<section class="main-header">
+			<h1> {!! $title !!} </h1>
+		</section>
 
-		<div class="left-50 map-wrap">
-			<div id="map"></div>
-		</div>
-		<div class="right-50">
-			<div class="inner-half">
-				<div class="page-header sub-line">
-					<h1> {!! $title !!} </h1>
-				</div>
-				<div class="page-index">
-					@foreach($posts as $post)
-						@include('includes.articlelist')
-					@endforeach
-				</div>
-				{!! $posts->links() !!}
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-			</div>
-		</div>
+		<section class="main-content">
+			@foreach($posts as $post)
+				@include('includes.articlelist')
+			@endforeach
+		</section>	
 
-	</div>
+		<section class="main-footer">
+			{!! $posts->links() !!}
+		</section>
 
-	<script>
-		var toJs = {!! $toJs !!};
-	</script>
+@endsection
+
+@section('scripts')
+
+	<script>var toJs = {!! $toJs !!};</script>
 
 @endsection

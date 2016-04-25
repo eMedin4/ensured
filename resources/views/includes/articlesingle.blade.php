@@ -1,67 +1,92 @@
-<article class="pb40 singlearticle">
+
+<article class="post-list post-single" data-id="{{ $post->id }}" data-link = {{ route('single', ['id' => $post, 'title' => $post->slug]) }}>
 
 	<header>
 		@include('partials.votes')
-		<h1 class="toinline">{{ $post->title }}</h1>	
+		<h1>{{ $post->title }}</h1>
 	</header>
 
+	@if ($post->url || !$post->tags->isEmpty())
+		<div class="post-meta">
 
-
-	{{-- url and tags --}}
-	<div class="post-more">
-		@if ( $post->url )
-			<h3 class="url pr10 pb10 inline-block">
-				<a href="{{ $post->url }}" target="_blank" rel="nofollow">
+			@if ($post->url)
+				<a class="post-link" href="{{ $post->url }}" target="_blank" rel="nofollow">
 					<img src="http://www.google.com/s2/favicons?domain={{ $post->url }}">
 					{{ $post->urldomain }}
 				</a>
-			</h3>
-		@endif
+			@endif
 
-		@if (!$post->tags->isEmpty())
-			<h3 class="show-tags pb10 inline-block">
-				<span class="normal-weight"> En: </span>
-				@foreach($post->tags as $tag)
-					<span class="tag">{{ $tag->name }}</span>
-				@endforeach
-			</h3>
-		@endif
-	</div>
+	 		@if (!$post->tags->isEmpty())
+				<p class="post-tags">
+					<i class="fa fa-tag-outline"></i>
+					<?php $prefix = ''; ?>
+					@foreach($post->tags as $i => $tag)<?php echo $prefix; ?> <a href="#">{{ $tag->name }}</a><?php $prefix = ',' ?>@endforeach
+				</p>
+			@endif 
+		</div>
+	@endif
 
+	<p class="post-extract">{{ $post->content }}</p>
 
-	{{-- content --}}
-	<p class="pb10">{{ $post->content }}</p>
+	<div class="post-info">
 
-	{{-- meta --}}
-	<div class="meta-left dark-purple pb10">
-		<span class="dates relative pr10">
+		<div class="post-info-left">
+
 			<i class="fa fa-calendar-text icon-calendar"></i>
 			@include('partials.dates')
-		</span>
 
-		<span class="location relative">
-			<i class="fa fa-location-arrow-outline"></i>
+			<i class="fa fa-location-arrow-outline icon-location"></i>
 			{{ $post->location }}
-		</span>
-	</div>
 
-	<div class="meta-right h3">
 
-		@include('partials.collections')
+		</div>
 
-	</div>
+		<div class="post-info-right">
+
+			@if ($post->num_comments)
+				<i class="fa fa-comment-text-outline icon-comments"></i> 
+				<span class="post-comments-count">{{ $post->num_comments }}</span>
+			@endif	
+
+			<span class="post-collections">
+				@include('partials.collections')
+			</span>
+
+		</div>
+
+	</div><!-- post-info -->
+
+</article>
+
 	
-	<ul class="meta-single grey pb10 inline">
-		<li>Publicado <span class="post-time">{{ $post->created_at->diffForHumans() }}</span> por</li>
-		<li><a href="{{ route('filteractivity', ['username' => $post->user->name]) }}" class="username">{{ $post->user->name }}</a></li>
-		<li class="right"><a class="meta-link" href="#">reportar</a></li>
-		@if(Auth::check() && Auth::user()->id == $post->user->id)
-			<li class="right"><a class="meta-link" href="#">borrar</a></li>
-			<li class="right"><a class="meta-link" href="{{ route('edit', $post) }}">editar</a></li>
-		@endif
-	</ul>
+	<div class="meta-single">
+		Publicado por <a href="{{ route('filteractivity', ['username' => $post->user->name]) }}" class="username">{{ $post->user->name }}</a>
+		<span class="post-time">{{ $post->created_at->diffForHumans() }}</span>
+	</div>
 
-	<div class="sub-line"></div>
+
+
+
+	<div class="flex-between area-buttons">
+		<div class="social-buttons">
+	<!-- 	    <a href="https://www.facebook.com/sharer/sharer.php?u={{request()->fullUrl()}}" target="_blank"> -->
+		    <a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.damirmiladinov.com/" target="_blank">
+		       <i class="fa fa-facebook"></i>Compartir en facebook
+		    </a>
+		    <a class="share-twitter" href="https://twitter.com/intent/tweet?url=http://blog.damirmiladinov.com/" target="_blank">
+		        <i class="fa fa-twitter"></i>Compartir en twitter
+		    </a>
+		</div>
+		<div class="action-buttons">
+			<span>Reportar<i class="fa fa-flag"></i></span>
+			@if(Auth::check() && Auth::user()->id == $post->user->id)
+				<a class="meta-link" href="#">borrar</a>
+				<a class="meta-link" href="{{ route('edit', $post) }}">editar</a>
+			@endif
+		</div>
+	</div>
+
+
 
 
 

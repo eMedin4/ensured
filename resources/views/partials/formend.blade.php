@@ -1,10 +1,4 @@
-<p class="text-info">Opcional</p>
-<div class="form-group pb10">
-    <input type="text" name="url" id="url" value="{{ old('url', empty($post->url) ? '' : $post->url) }}" placeholder="web">
-</div>
-<!-- <div class="form-group pb20">
-    <div class="add-tags modal-launcher"><i class="fa fa-add"></i>Click para añadir tags... </div>
-</div> -->
+
 
 {{-- MODAL BOX : TAGS --}}
 {{-- 	<div class="modal-background"></div>
@@ -25,4 +19,5 @@
 
 <div class="form-group">
 	<button type="submit" class="btn">{{ $submitText }}</button>
+    <button type="submit" class="btn btn-cancel">Cancelar</button>
 </div>

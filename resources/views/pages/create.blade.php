@@ -1,52 +1,31 @@
-@extends('layouts.master')
-
-@section('title', 'esto es el create')
-
+@extends('layouts.small')
+@section('title', 'Añade nuevo contenido')
 @section('bodyclass', 'createpage')
 
-@section('content')
+@section('main')
 
-<div class="content content-limit">
+	@if (old())
+		{{dd(old())}}
+	@endif
 
-	<div class="limit p30 white-background">
+	<form method="POST" action="{{ route('create') }}">
 
-		<h1 class="big-title pb10"> Añade tu contenido </h1>
-
-		@include('partials.instructions')
-
-		<form method="POST" action="{{ route('create') }}">
-
-		    {!! csrf_field() !!}
-
-			@include('partials.formerrors')
-
-			<div class="pb20">
-				@include('partials.formcontent')
-			</div>
-
-			<div class="sub-line overflow">
-				@include('partials.formcalendar')
-			</div>
-
-			<div class="pb20">
-				@include('partials.formmap')
-			</div>
-
-			<div class="pb20">
-				@include('partials.formend', ['submitText' => 'Enviar Publicación'])
-			</div>
-            
-		</form>
-
-	</div>
-
-</div>
+	    {!! csrf_field() !!}
+		@include('partials.formerrors')
+		@include('partials.formcontent')
+		@include('partials.formcalendar')
+		@include('partials.formmap')
+		@include('partials.formend', ['submitText' => 'Publicar'])
+        
+	</form>
 
 @endsection
 
 @section('scripts')
+	<script>var tags = {!! $tags !!};</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src="{{ asset('/assets/js/jquery-ui.multidatespicker.js') }}"></script>
+	<script src="{{ asset('/assets/js/tag-it.js') }}"></script>
 
 @endsection
 

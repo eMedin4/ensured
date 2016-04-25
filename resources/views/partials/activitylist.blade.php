@@ -21,8 +21,9 @@
 
 	@if ($event->name == 'created_postvote')
 	<article class="pb30"> 
-		<div class="h4 pb3 grey"><a href class="username">{{ $event->user->name }}</a> votó un artículo {{ $event->created_at->diffForHumans() }}</div>
-		<h1 class="h1-mini"><a href="{{ route('single', ['id' => $event->subject->id, 'title' => $event->subject->slug]) }}" class="block">{{ $event->subject->title }}</a></h1>
+		<i class="fa fa-triangle-up"></i><h1 class="h1-mini"><a href="{{ route('single', ['id' => $event->subject->id, 'title' => $event->subject->slug]) }}" class="block">{{ $event->subject->title }}</a></h1>
+		<div class="h4 pb3 grey"><a href class="username">{{ $event->user->name }}</a> votódd un artículo {{ $event->created_at->diffForHumans() }}</div>
+		
 	</article>	
 	@endif
 

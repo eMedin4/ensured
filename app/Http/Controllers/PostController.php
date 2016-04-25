@@ -49,8 +49,8 @@ class PostController extends Controller
 
     public function create()
     {
-        /*$tags = Tag::all();*/
-        return view('pages.create');
+        $tags = Tag::lists('name');
+        return view('pages.create', compact('tags'));
     }
 
 
