@@ -41,8 +41,8 @@
     </div>
 
     @if (Session::get('message'))
-        <div class="info info-error mb20">
-            <i class="fa fa-frown"></i>
+        <div class="info info-error info-error-auth">
+            <i class="fa fa-frown-o"></i>
             <h2>Uups...</h2>
             <p>{{ Session::get('message') }}</p>
         </div>

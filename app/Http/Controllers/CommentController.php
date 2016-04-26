@@ -39,7 +39,7 @@ class CommentController extends Controller
         $comment->post_id = $id;
         $comment->save();*/
 
-    	session()->flash('message', 'Tu comentario ha sido publicado');
+    	session()->flash('report', 'Tu comentario ha sido publicado');
     	return redirect()->back();
 
     }

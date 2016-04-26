@@ -16,7 +16,7 @@ class AuthController extends Controller
     public function getLogin(Request $request)
     {
 
-        if (URL::previous() != 'http://localhost/ensured/public/entrar' && URL::previous() != 'http://localhost/ensured/public/registro') {
+        if (URL::previous() != route('getlogin') && URL::previous() != route('getregister')) {
             $request->session()->put('preurl', URL::previous());
         }
 

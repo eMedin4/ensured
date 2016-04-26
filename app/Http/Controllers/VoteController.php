@@ -27,7 +27,12 @@ class VoteController extends Controller
     	$postvote->ip_address = $hexip;
     	$postvote->save();
 
-    	return response()->json(['name' => 'prueba', 'state' => 'CA']);
+        $post = Post::find($request->post_id);
+        $count = count($post->postvotes);
+        $post->up = $count;
+        $post->save();
+
+    	return response()->json(['count' => $count, 'state' => 'ok']);
 
     }
 }

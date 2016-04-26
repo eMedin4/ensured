@@ -25,6 +25,8 @@ $(document).ready(function() {
 		})
 		.done(function(data) {
 			t.removeClass('launch-votepost').addClass('idle-votepost');	
+			t.find('.fa').removeClass('fa-triangle-up').addClass('fa-check-bts');
+			t.find('.count-votes').text(data.count);
 			var oldcount = t.find('.vote-count').text();
 			var newcount = parseInt(oldcount) + 1;
 			var html = newcount + "<i class='fa fa-check'></i>";

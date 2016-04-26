@@ -81,8 +81,8 @@
 
 	</div><!-- global-flex -->
 
-	@if (Session::has('message'))
-		<div class="flash-message">{{Session::get('message')}}</div>
+	@if (Session::has('report'))
+		<div class="flash-message">{{Session::get('report')}}</div>
 	@endif
 
 

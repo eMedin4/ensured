@@ -1173,6 +1173,10 @@ input.input-micro {
     margin-bottom: 10px;
 }
 
+.info-error-auth {
+	margin: 12px;
+}
+
 /*tags*/
 
 .tagit-autocomplete.ui-menu {
@@ -1573,9 +1577,9 @@ button.account-btn {
 		position: relative;
 		top: 3px;
 		width: 28px;
-    	height: 28px;
+    	height: 24px;
         font-size: 20px;
-        padding: 5px;
+        padding: 3px 5px;
 	}
 
 	article .icon-activity-vote {
@@ -1610,6 +1614,30 @@ button.account-btn {
     text-align: center;
     background: #fff1e7;
     color: #333;
+    transition: all 0.3s ease-in-out;
+	}
+
+	.launch-votepost {
+		cursor: pointer;
+		transition: all 0.3s ease-in-out;
+	}
+
+	.launch-votepost:hover .count-votes {
+		background: transparent;
+	}
+
+	.launch-votepost:hover {
+		background: #FFDEC6;
+	}
+
+	article .fa-check-bts {
+		font-size: 14px;
+	    color: #569239;
+	    left: 3px;
+	}
+
+	.idle-votepost .count-votes {
+		background: #fff;
 	}
 
 

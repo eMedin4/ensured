@@ -13,12 +13,14 @@ class Postvote extends Model
 		parent::boot();
 
 		static::created(function($postvote) {
-			Activity::create([
-				'subject_id' => $postvote->post->id,
-	        	'subject_type' => Post::class,
-	        	'name' => 'created_postvote',
-	        	'user_id' => $postvote->user_id
-	        ]);
+			if ($postvote->user_id) { //si es usuario invitado no guardar
+				Activity::create([
+					'subject_id' => $postvote->post->id,
+		        	'subject_type' => Post::class,
+		        	'name' => 'created_postvote',
+		        	'user_id' => $postvote->user_id
+		        ]);
+		     }
 		});
 	}
 

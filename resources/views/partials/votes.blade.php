@@ -1,4 +1,4 @@
-{{--
+<!-- {{--
 
 @if(count($post->postvotes))
 	<div class="btn-vote idle-votepost inline-block">
@@ -10,12 +10,21 @@
 	</div>
 @endif
 
---}}
+--}} -->
 
-<i class="fa fa-triangle-up icon-activity icon-activity-vote"></i>
-<div class="count-votes">{{ Route::is('main') ? $post->num_votes : count($post->postvotes) }}</div>
 
-{{--<div class="post-votes" data-id="{{ $post->id }}" data-url="{{ route('postvote')}}">
+
+<div class="launch-votepost" data-id="{{ $post->id }}" data-url="{{ route('postvote')}}">
+	<i class="fa fa-triangle-up icon-activity icon-activity-vote"></i>
+	<!-- {{--<div class="count-votes">{{ Route::is('main') ? $post->num_votes : count($post->postvotes) }}</div>--}} -->
+	<div class="count-votes">{{ $post->up }}</div>
+</div>
+
+
+
+
+
+<!-- {{--<div class="post-votes" data-id="{{ $post->id }}" data-url="{{ route('postvote')}}">
 	{{ Route::is('main') ? $post->num_votes : count($post->postvotes) }}
 	<i class="fa fa-triangle-up"></i>
-</div>--}}
+</div>--}} -->

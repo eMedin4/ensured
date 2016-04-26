@@ -10,10 +10,8 @@ class PostRepository {
 	protected function selectPostsList()
     {
         return Post::selectRaw(
-            'posts.*, '
-            . '(SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) as num_comments, '
-            . '(SELECT COUNT(*) FROM postvotes WHERE postvotes.post_id = posts.id) as num_votes'
-            )->with(['user', 'tags', 'postvotes', 'dates' => function ($query) {
+            'posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) as num_comments '
+            )->with(['user', 'tags', 'dates' => function ($query) {
                 $query->orderBy('date', 'asc');
             }]);
     }

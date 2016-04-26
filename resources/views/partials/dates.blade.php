@@ -38,6 +38,16 @@
 @if ($setdata == 0)
 
 	<span class="special-date past-date">terminado</span>
+				<div class="icon-more">
+				<i class="dropdown fa fa-more-horiz"></i>
+				<div class="dropdown-menu dropdown-dates">
+					@foreach($post->dates as $date)
+						{{ rtrim($date->date->formatLocalized('%a'), '.') }}
+						{{ $date->date->formatLocalized('%d') }}
+						{{ rtrim($date->date->formatLocalized('%b'), '.') }}
+					@endforeach
+				</div>
+			</div>
 
 @endif
 
