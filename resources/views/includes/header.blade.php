@@ -79,7 +79,7 @@
 		
 		<a class="map-responsive" href="#">Mapa</a>
 
-	</div><!-- global-flex -->
+	</div><!-- global-flexxx -->
 
 	@if (Session::has('report'))
 		<div class="flash-message">{{Session::get('report')}}</div>
