@@ -4,11 +4,11 @@
 
 @section('main')
 
-	@if (old())
+<!-- {{--	@if (old())
 		{{dd(old())}}
-	@endif
+	@endif --}} -->
 
-	<form method="POST" action="{{ route('create') }}">
+	<form method="POST" action="{{ route('store') }}">
 
 	    {!! csrf_field() !!}
 		@include('partials.formerrors')

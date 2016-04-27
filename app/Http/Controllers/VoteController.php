@@ -18,13 +18,22 @@ class VoteController extends Controller
     	if( ! $request->ajax()) { 	    
 	        return back(); 
 	    }
+        $ip = $request->getClientIp();
+        $binip = inet_pton($ip);
+        $hexip = bin2hex($binip);
+		/*$hexip = bin2hex(inet_pton('62.57.188.225'));*/
 
-		$hexip = bin2hex(inet_pton($request->getClientIp()));
+        if (Postvote::whereRaw("post_id = ? AND HEX(ip_address) = ?", array($request->post_id, $hexip))->count() > 0) {
+
+            return response()->json(['state' => false, 'message' => 'Ya se ha votado desde esta ip']);
+
+        }
+
     	$user_id = Auth::user() ? Auth::user()->id : null;
     	$postvote = new PostVote;
     	$postvote->post_id = $request->post_id;
     	$postvote->user_id = $user_id;
-    	$postvote->ip_address = $hexip;
+    	$postvote->ip_address = $binip;
     	$postvote->save();
 
         $post = Post::find($request->post_id);
@@ -32,7 +41,7 @@ class VoteController extends Controller
         $post->up = $count;
         $post->save();
 
-    	return response()->json(['count' => $count, 'state' => 'ok']);
+    	return response()->json(['state' => true, 'count' => $count]);
 
     }
 }

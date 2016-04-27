@@ -21,6 +21,10 @@
 	<!--Content of page-->
 		@yield('content')
 
+	<!--Warnings popups-->
+		<div class="popup"></div>
+		<div class="popup-back"></div>
+
 	<!--All site scripts-->
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCod6UGQqYXibHSelQvfkQ5TN7K6k0xK0Q&"></script>
 		<script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js"></script>

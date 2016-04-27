@@ -1442,9 +1442,9 @@ ul.tagit li.tagit-choice .tagit-close {
     padding-right: 3px;
 }
 
-.facebook { background: #798EB9; }
-.facebook:hover { background: #5F78AB; }
-.google { background: #DA6B58; }
+.facebook { background: #5B76AF; }
+.facebook:hover { background: #4A69AB; }
+.google { background: #E45F47; }
 .google:hover { background: #D34E36; }
 .instagram { background: #998370; }
 .instagram:hover { background: #836E5D; }
@@ -1705,3 +1705,32 @@ button.account-btn {
 	    top: 2px;
 	    padding-left: 3px;	
 	}
+
+	/*popup*/
+
+.popup {
+    width: 400px;
+    min-height: 160px;
+    position: fixed;
+    padding: 40px 60px;
+    top: 229px;
+    left: calc(50% - 200px);
+    display: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    background-color: #fff;
+    z-index: 12;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 24px; }
+
+.popup-back {
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    right: 0;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 11; }

@@ -24,15 +24,21 @@ $(document).ready(function() {
 			data: { 'post_id': id }
 		})
 		.done(function(data) {
-			t.removeClass('launch-votepost').addClass('idle-votepost');	
-			t.find('.fa').removeClass('fa-triangle-up').addClass('fa-check-bts');
-			t.find('.count-votes').text(data.count);
-			var oldcount = t.find('.vote-count').text();
-			var newcount = parseInt(oldcount) + 1;
-			var html = newcount + "<i class='fa fa-check'></i>";
-			t.find('.vote-count').html(html);
+			if (data.state) {
+				t.removeClass('launch-votepost').addClass('idle-votepost');	
+				t.find('.fa').removeClass('fa-triangle-up').addClass('fa-check-bts');
+				t.find('.count-votes').text(data.count);
+			} else {
+				var html = "<div>Error</div><p>" + data.message + "</p>";
+				$('.popup').html(html);
+				$('.popup, .popup-back').fadeIn(300);
+			}
 		});
 
+	});
+
+	$('.popup-back').on('click', function() {
+		$('.popup, .popup-back').fadeOut(300);
 	});
 
 	$('.vote-comment span').on('click', function() {

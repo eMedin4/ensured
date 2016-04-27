@@ -107,7 +107,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('nuevo', 
     	['as' => 'create', 'uses' => 'PostController@create']);
 
-    Route::post('nuevo', 
+    Route::post('guardar', 
     	['as' => 'store', 'uses' => 'PostController@store']);
 
     Route::post('livesearch', 
