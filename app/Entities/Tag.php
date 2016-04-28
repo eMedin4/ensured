@@ -9,6 +9,8 @@ class Tag extends Model
 
     public $timestamps = false;
 
+    public $fillable = ['name'];
+
     public function posts()
     {
     	return $this->belongsToMany(Post::class);

@@ -7,7 +7,7 @@
 
 	<div class="post-main">
 
-		<h1><a href="{{ route('single', ['id' => $post, 'title' => $post->slug]) }}">{{ $post->title }}</a></h1>
+		<h1><a href="{{ route('single', ['id' => $post, 'title' => $post->slug]) }}">{{$post->id}}- {{ $post->title }}</a></h1>
 
 		@if ($post->url || !$post->tags->isEmpty())
 			<div class="post-meta">

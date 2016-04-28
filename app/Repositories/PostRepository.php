@@ -17,20 +17,37 @@ class PostRepository {
                 $query->orderBy('date', 'asc');
                 }
             ])
-            ->leftJoin('postvotes as myvote', function($query) {
-                    $query->on('myvote.post_id', '=', 'posts.id')
-                          ->on('myvote.user_id', '=', DB::raw(23));
-                }
-            )
             ->groupBy('posts.id');
     }
 
-    public function paginateMain()
+    public function myVotes($user, $ip)
     {
+        $binip = inet_pton($ip);
+        $hexip = bin2hex($binip);
 
-    	return $this->selectPostsList()
-        ->orderBy('score', 'DESC')
-        ->paginate(10);
+        if ($user) {
+            return 
+                $this->selectPostsList()
+                ->leftJoin('postvotes as myvote', function($query) use($user) {
+                    $query->on('myvote.post_id', '=', 'posts.id')
+                          ->on('myvote.user_id', '=', DB::raw($user));
+                });
+        } else {
+            return
+                $this->selectPostsList()
+                ->leftJoin('postvotes as myvote', function($query) use($hexip) {
+                    $query->on('myvote.post_id', '=', 'posts.id')
+                          ->on(DB::raw('HEX(myvote.ip_address)'), '=', DB::raw($hexip));
+            });
+        }
+    }
+
+    public function paginateMain($user, $ip)
+    {
+        return
+            $this->myVotes($user, $ip)
+            ->orderBy('score', 'DESC')
+            ->paginate(10);
     }
 
 

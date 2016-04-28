@@ -32,7 +32,9 @@ class PostController extends Controller
 
     public function main()
     {
-        $posts = $this->postRepository->paginateMain();
+        $ip = request()->ip();
+        $user = Auth::user() ? Auth::user()->id : null;
+        $posts = $this->postRepository->paginateMain($user, $ip);
         $title = "Portada";
         $toJs = $posts->toJson();
         return view('pages.main', compact('posts', 'title', 'toJs'));
@@ -59,7 +61,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-/*        dd($request->all());*/
+/*       dd($request->all());*/
         
         $rules = $this->rules($request->all());
 
@@ -130,8 +132,8 @@ class PostController extends Controller
 
         }
 
-        if ($tags) {
-            foreach ($tags as $tagname) {
+        if ($request->input('tags')) {
+            foreach ($request->input('tags') as $tagname) {
                 $tag = Tag::create(['name' => $tagname]);
                 $post->tags()->attach($tag);
             }
