@@ -130,6 +130,13 @@ class PostController extends Controller
 
         }
 
+        if ($tags) {
+            foreach ($tags as $tagname) {
+                $tag = Tag::create(['name' => $tagname]);
+                $post->tags()->attach($tag);
+            }
+        }
+
         return Redirect::route('single', [$post->id, $post->title]);
 
     }

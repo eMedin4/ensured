@@ -13,13 +13,17 @@
 --}} -->
 
 
-
-<div class="launch-votepost" data-id="{{ $post->id }}" data-url="{{ route('postvote')}}">
-	<i class="fa fa-triangle-up icon-activity icon-activity-vote"></i>
-	<!-- {{--<div class="count-votes">{{ Route::is('main') ? $post->num_votes : count($post->postvotes) }}</div>--}} -->
-	<div class="count-votes">{{ $post->up }}</div>
-</div>
-
+@if ($post->votestate == 0)
+	<div class="launch-votepost" data-id="{{ $post->id }}" data-url="{{ route('postvote')}}">
+		<i class="fa fa-triangle-up icon-activity icon-activity-vote"></i>
+		<div class="count-votes">{{ $post->up }}</div>
+	</div>
+@else
+	<div class="idle-votepost">
+		<i class="fa icon-activity icon-activity-vote fa-check-bts"></i>
+		<div class="count-votes">{{ $post->up }}</div>
+	</div>
+@endif
 
 
 

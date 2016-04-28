@@ -432,6 +432,7 @@ $('.launch-menu-collections').on('click', function() {
      });
 
      $("#myTags").tagit({
+     	fieldName: "tags[]",
 	    availableTags: tags,
 	    removeConfirmation:true,
     	placeholderText:"Etiquetas"

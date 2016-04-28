@@ -10,10 +10,19 @@ class PostRepository {
 	protected function selectPostsList()
     {
         return Post::selectRaw(
-            'posts.*, (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) as num_comments '
+            'posts.*, '
+            . '(SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) as num_comments, '
+            . 'CASE WHEN myvote.post_id IS NULL THEN 0 ELSE 1 END AS votestate'
             )->with(['user', 'tags', 'dates' => function ($query) {
                 $query->orderBy('date', 'asc');
-            }]);
+                }
+            ])
+            ->leftJoin('postvotes as myvote', function($query) {
+                    $query->on('myvote.post_id', '=', 'posts.id')
+                          ->on('myvote.user_id', '=', DB::raw(23));
+                }
+            )
+            ->groupBy('posts.id');
     }
 
     public function paginateMain()
