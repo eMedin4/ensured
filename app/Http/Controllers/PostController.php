@@ -33,6 +33,9 @@ class PostController extends Controller
     public function main()
     {
         $ip = request()->ip();
+        $binip = inet_pton($ip);
+        $hexip = bin2hex($binip);
+        dd($hexip);
         $user = Auth::user() ? Auth::user()->id : null;
         $posts = $this->postRepository->paginateMain($user, $ip);
         $title = "Portada";
