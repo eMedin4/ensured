@@ -33,7 +33,6 @@ class PostController extends Controller
     public function main()
     {
         $ip = request()->ip();
-        $ip = '62.57.188.225';
         $binip = inet_pton($ip);
         $hexip = bin2hex($binip);
 
