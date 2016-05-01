@@ -1,6 +1,6 @@
 @extends('layouts.split')
 
-@section('title', 'Portada, todo lo que ocurre a tu alrededor')
+@section('title', 'Barcelona, ¿qué haces hoy?')
 
 @section('bodyclass', 'mainpage')
 
