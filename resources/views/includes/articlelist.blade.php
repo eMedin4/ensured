@@ -1,5 +1,5 @@
 
-<article class="post-list flex-row" data-id="{{ $post->id }}" data-link = {{ route('single', ['id' => $post, 'title' => $post->slug]) }}>
+<div class="post-list flex-row" data-id="{{ $post->id }}" data-link = {{ route('single', ['id' => $post, 'title' => $post->slug]) }}>
 
 	<div class="post-top">
 		@include('partials.votes')
@@ -52,4 +52,4 @@
 
 	</div><!-- post-main -->
 
-</article>
+</div>

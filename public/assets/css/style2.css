@@ -707,8 +707,9 @@ article h1 a {
 }
 
 .post-info {
-	display: flex;
 	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
 	justify-content: space-between;
     font-weight: 400;
     color: #888;
