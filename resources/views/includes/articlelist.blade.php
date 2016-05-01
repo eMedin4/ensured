@@ -5,7 +5,7 @@
 		@include('partials.votes')
 	</div>
 
-	<div class="post-main" style="display: inline-block; width: 80%;">
+	<div class="post-main" style="display: inline-block;">
 
 		<h1><a href="{{ route('single', ['id' => $post, 'title' => $post->slug]) }}">{{$post->id}}- {{ $post->title }}</a></h1>
 
