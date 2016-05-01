@@ -33,6 +33,13 @@ class PostController extends Controller
     public function main()
     {
         $ip = request()->ip();
+        $ip = '62.57.188.225';
+        $binip = inet_pton($ip);
+        $hexip = bin2hex($binip);
+
+        $arr = [$ip, $binip, $hexip];
+        dd($arr);
+
         $user = Auth::user() ? Auth::user()->id : null;
         $posts = $this->postRepository->paginateMain($user, $ip);
         $title = "Portada";
