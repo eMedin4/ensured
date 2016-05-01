@@ -37,7 +37,7 @@ class PostRepository {
                 $this->selectPostsList()
                 ->leftJoin('postvotes as myvote', function($query) use($hexip) {
                     $query->on('myvote.post_id', '=', 'posts.id')
-                          ->on(DB::raw('myvote.ip_address'), '=', DB::raw($hexip));
+                          ->on(DB::raw('HEX(myvote.ip_address)'), '=', DB::raw("'$hexip'"));
             });
         }
     }
