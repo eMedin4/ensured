@@ -591,6 +591,7 @@ body {
     padding-bottom: 20px;
     border-bottom: 1px solid #f7f7f7;
     margin: 0 15px 20px;
+    justify-content: space-between;
 }
 
 .post-single {

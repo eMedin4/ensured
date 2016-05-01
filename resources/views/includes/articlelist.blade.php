@@ -1,11 +1,11 @@
 
 <article class="post-list flex-row" data-id="{{ $post->id }}" data-link = {{ route('single', ['id' => $post, 'title' => $post->slug]) }}>
 
-	<div class="post-top" style="display: inline-block;">
+	<div class="post-top">
 		@include('partials.votes')
 	</div>
 
-	<div class="post-main" style="display: inline-block;">
+	<div class="post-main">
 
 		<h1><a href="{{ route('single', ['id' => $post, 'title' => $post->slug]) }}">{{$post->id}}- {{ $post->title }}</a></h1>
 
