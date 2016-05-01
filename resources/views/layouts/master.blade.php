@@ -5,6 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- {{-- verificación para google mail for work en este dominio --}} -->
+	<meta name="google-site-verification" content="38qqobGsNWPGrtzhx6skRIbfkUY_xnv_jF9IlnTjWP8" />
 	<title>I ♥ HTML - @yield('title')</title>
 	<script src="https://use.typekit.net/ocy2tfu.js"></script>
 	<script>try{Typekit.load({ async: true });}catch(e){}</script>
