@@ -591,8 +591,19 @@ body {
     padding-bottom: 20px;
     border-bottom: 1px solid #f7f7f7;
     margin: 0 15px 20px;
-    justify-content: space-between;
+
 }
+
+  .post-top {
+	margin-right: 15px;
+	/*tip para evitar overlap en ios*/
+	-webkit-flex-shrink: 0; 
+	 flex-shrink: 0;
+  }
+
+  .post-main {
+
+  }
 
 .post-single {
 	margin-top: 30px;
@@ -1584,9 +1595,7 @@ button.account-btn {
 	  top: 10px; }
 
 
-	  .post-top {
-	  	margin-right: 15px;
-	  }
+
 
 
 	article .icon-activity {
