@@ -4,9 +4,9 @@
 
 @section('main')
 
-<!-- {{--	@if (old())
+{{--<!-- 	@if (old())
 		{{dd(old())}}
-	@endif --}} -->
+	@endif  -->--}}
 
 	<form method="POST" action="{{ route('store') }}">
 
@@ -22,7 +22,13 @@
 @endsection
 
 @section('scripts')
-	<script>var tags = {!! $tags !!};</script>
+	<script>
+		var tags = {!! $tags !!};
+		var oldtags = new Array();
+		@if (old('tags'))
+			oldtags = <?php echo json_encode(old('tags')); ?>
+		@endif
+	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script src="{{ asset('/assets/js/jquery-ui.multidatespicker.js') }}"></script>
 	<script src="{{ asset('/assets/js/tag-it.js') }}"></script>

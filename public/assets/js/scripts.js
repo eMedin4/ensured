@@ -437,6 +437,15 @@ $('.launch-menu-collections').on('click', function() {
 	    removeConfirmation:true,
     	placeholderText:"Etiquetas"
 	});
+    
+    /* Rellenar tags automáticamente cuando el forumlario crear devuelve error */
+    var oldtagslength = oldtags.length;
+    if (oldtagslength > 0) {
+    	for (var i=0; i<oldtagslength; i++) {
+    		$("#myTags").tagit("createTag", oldtags[i]);
+    	}
+    }
+
 
      $('.tagsearch').on('click', '.tag', function(e) {
      	var tag = $(this).text();

@@ -8,5 +8,5 @@
 	<div id="map"></div>
 
 </div>
-	<input type="hidden" class="add-field" name="lat" id="latitude" value=""/>
-	<input type="hidden" class="add-field" name="lng" id="longitude" value=""/>
+	<input type="hidden" class="add-field" name="lat" id="latitude" value="{{ old('lat', empty($post->lat) ? '' : $post->lat) }}"/>
+	<input type="hidden" class="add-field" name="lng" id="longitude" value="{{ old('lng', empty($post->lng) ? '' : $post->lng) }}"/>

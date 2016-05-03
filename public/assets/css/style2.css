@@ -1637,9 +1637,10 @@ button.account-btn {
 	}
 
 	article.post-single .icon-activity {
-		width: 46px;
-		font-size: 30px;
-		text-align: center;
+	    width: 36px;
+	    font-size: 22px;
+	    text-align: center;
+	    padding: 0;
 	}
 
 	article .icon-activity-vote {
@@ -1668,19 +1669,19 @@ button.account-btn {
 	}
 
 	.count-votes {
-	font-family: "futura-pt",sans-serif;
-    font-weight: 500;
-    width: 28px;
-    text-align: center;
-    background: #fff1e7;
-    color: #333;
-    transition: all 0.3s ease-in-out;
+		font-family: "futura-pt",sans-serif;
+	    font-weight: 500;
+	    width: 28px;
+	    text-align: center;
+	    background: #fff1e7;
+	    color: #333;
+	    transition: all 0.3s ease-in-out;
 	}
 
 	.post-single .count-votes {
-		width: 46px;
-		font-size: 32px;
-		padding: 6px 0;
+		width: 36px;
+	    font-size: 26px;
+	    padding: 2px 0;
 	}
 
 	.launch-votepost {
