@@ -67,7 +67,7 @@
 					<nav class="dd-menu sub-menu sub-nav-flex header-collections"></nav>
 				</div>
 			    <a class="menu-create" href="{{ route('create') }}">Publicar</a>
-			    <a class="name-me menu-user" href={{ route('filteractivity', ['username' => Auth::user()->name, 'filter' => 'todos' ]) }}>{{ Auth::user()->name }}</a>
+			    <a class="name-me menu-user" href="{{ route('filteractivity', ['username' => Auth::user()->name]) }}">{{ Auth::user()->name }}</a>
 			    @if(Auth::user()->avatar)
 			    	<img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" width="28" height="28" class="avatar-me">
 			    @else

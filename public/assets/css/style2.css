@@ -283,17 +283,22 @@ i.avatar-me {
 }
 
 .avatar-me-mini {
-	height: 19px;
-    width: 19px;
+	height: 18px;
+    width: 18px;
     position: relative;
     top: 0px;
     margin-right: 2px;
     border-radius: 9px;
 }
 
+img.avatar-me-mini {
+	top: 4px;
+}
+
 i.avatar-me-mini {
-    background: #f0f0f0;
-    padding: 2px;	
+    padding: 1px 2px;
+    color: #333333;
+    background: #F7F7F7;
 }
 
 .avatar-me-extra {
@@ -908,29 +913,28 @@ a.share-twitter:hover {
 	}
 
 	.header-collection {
-	    letter-spacing: -1px;
 	    padding: 12px 12px 10px;
 	    white-space: nowrap;
-	    font-family: "futura-pt",sans-serif;
-	    font-size: 20px;
-	    font-weight: 500;
 	    border-bottom: 1px solid #f0f0f0;
 	}
 
 	.content-collection {
-		font-weight: 400;
+	    font-weight: 400;
+	    color: #333;
+	    font-size: 15px;
 	}
 
 	.content-collection-guest {
-		padding: 10px;
-		font-weight: 300;
+	    text-align: center;
+	    line-height: 20px;
+	    padding: 8px 6px;
 	}
 
 	.footer-collection {
 		background: #f0f0f0;
     	padding: 8px;
     	font-weight: 400;
-    	text-align: left;
+    	letter-spacing: -0.3px;
 	}
 
 	.footer-collection-guest {
@@ -963,7 +967,7 @@ a.share-twitter:hover {
 	}
 
 	.launch-save-collection:hover {
-		background: #f0f0f0;
+		background: #f7f7f7;
 		cursor: pointer;
 	}
 

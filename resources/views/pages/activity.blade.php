@@ -4,7 +4,7 @@
 
 <div class="flex-row header-limit-page">
 	@if($user->avatar)
-		<img src="{{ $user->avatar }}" alt="{{ $user->name }}" width="28" height="28" class="avatar-me-mini">
+		<img class="avatar-me-extra" src="{{ $user->avatar }}" alt="{{ $user->name }}" width="28" height="28" class="avatar-me-mini">
 	@else
 		<i class="fa fa-face avatar-me-extra"></i>
 	@endif
@@ -36,7 +36,7 @@
 					<div class="text">
 						<a href class="username">
 							@if($user->avatar)
-								<img src="{{ $user->avatar }}" alt="{{ $user->name }}" width="28" height="28" class="avatar-me-mini">
+								<img class="avatar-me-mini" src="{{ $user->avatar }}" alt="{{ $user->name }}" width="28" height="28" class="avatar-me-mini">
 							@else
 								<i class="fa fa-face avatar-me-mini"></i>
 							@endif
@@ -65,7 +65,7 @@
 					<div class="text">
 						<a href class="username">
 							@if($user->avatar)
-								<img src="{{ $user->avatar }}" alt="{{ $user->name }}" width="28" height="28" class="avatar-me-mini">
+								<img class="avatar-me-mini" src="{{ $user->avatar }}" alt="{{ $user->name }}" width="28" height="28" class="avatar-me-mini">
 							@else
 								<i class="fa fa-face avatar-me-mini"></i>
 							@endif
@@ -95,7 +95,7 @@
 					<div class="text">
 						<a href class="username">
 							@if($user->avatar)
-								<img src="{{ $user->avatar }}" alt="{{ $user->name }}" width="28" height="28" class="avatar-me-mini">
+								<img class="avatar-me-mini" src="{{ $user->avatar }}" alt="{{ $user->name }}" width="28" height="28" class="avatar-me-mini">
 							@else
 								<i class="fa fa-face avatar-me-mini"></i>
 							@endif

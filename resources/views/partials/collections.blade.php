@@ -8,7 +8,7 @@
 		@if (Auth::check())
 		<div class="dd-menu collections-menu">
 			<div class="header-collection">Guárdalo en una lista</div>
-			<div class="content-collection tleft">
+			<div class="content-collection">
 				<table class="table-collection" data-post-id="{{ $post->id }}" data-url="{{ route('savecollection')}}">
 					<tbody>
 					</tbody>
@@ -36,12 +36,10 @@
 
 		@else
 		<div class="dd-menu collections-menu">
-			<div class="header-collection h1-mini mini-sub-line">Guárdalo en una lista</div>
-			<div class="content-collection content-collection-guest">Puedes marcar este artículo y guardarlo en tus favoritos o crear tus propias listas.</div>
+			<div class="header-collection">Guárdalo en una lista</div>
+			<div class="content-collection content-collection-guest">Puedes marcar este artículo en tus favoritos o crear tus propias listas.</div>
 			<div class="footer-collection footer-collection-guest">
-				<a href="{{ route('getlogin') }}">Entra</a>
-				o
-			    <a href="{{ route('getregister') }}">Regístrate</a>
+				<a href="{{ route('getlogin') }}">Entra con tu usuario</a>
 			</div>
 		</div>
 		@endif

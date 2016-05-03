@@ -1083,11 +1083,11 @@ a.meta-link:hover {
 	    right: 0;
 	    margin-left: auto;
 	    margin-right: auto;
-	    width: 40%;	
-		background: rgba(0,0,0,0.8);
-		color: #F0E9FF;
-		padding: 8px 20px;
-    	text-align: center;
+	    width: 40%;
+	    background: #72AE92;
+	    color: #FFF;
+	    padding: 16px 20px;
+	    text-align: center;
 	}
 
 
