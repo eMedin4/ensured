@@ -29,6 +29,18 @@ class PostController extends Controller
         $this->postRepository = $postRepository;
     }
 
+    public function test()
+    {
+        $dt = Carbon::now();
+        setlocale(LC_TIME,'');
+        echo $dt->formatLocalized('%A %d %B %Y');
+        echo '<br>';
+        setlocale(LC_TIME,'en-EN');
+        echo $dt->formatLocalized('%A %d %B %Y');
+        echo '<br>';
+        setlocale(LC_TIME,'es_ES.utf8');
+        echo $dt->formatLocalized('%A %d %B %Y');
+    }
 
     public function main()
     {

@@ -1,8 +1,6 @@
 <?php
 
-Route::get('test4', function () {
-    return 'test4';
-});
+Route::get('test', 'PostController@test');
 
 Route::group(['middleware' => 'web'], function () {
 
