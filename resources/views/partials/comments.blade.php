@@ -22,7 +22,7 @@
 	@foreach($post->comments as $comment)
 
 		<article class="comment pb20">
-			<p class="pb2"> {{ $comment->content }} </p>
+			<p class="pb4"> {{ $comment->content }} </p>
 			<h4 class="grey">
 				Escrito
 				<span>{{ $comment->created_at->diffForHumans() }}</span>

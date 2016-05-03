@@ -46,12 +46,11 @@ function initialize() {
         content = content.substr(0, 300);
 
         var id = toJs.data[i].id;
-        var link = $('.mainarticle[data-id=' + id + ']').data('link');
+        var link = $('.post[data-id=' + id + ']').data('link');
 
-        var infoboxHtml = "<div class='h1-mini pb5'>" + 
-            "<span class='infobox-count'>" + toJs.data[i].num_votes + "</span><a href=" + link + ">" +
-        	toJs.data[i].title + "</a></div><div class='size16'>" + content + 
-        	"</div><div class='infobox-link tright'><a href=" + link + ">Entrar</a></div>";
+        var infoboxHtml = "<div class='post'><div class='h1'>" + 
+            "<a href=" + link + ">" + toJs.data[i].title + "</a></div>" +
+            "<p>" + toJs.data[i].location + "</p><div class='infobox-link'><a href=" + link + ">Entrar</a></div></div>";
 
         google.maps.event.addListener(marker, 'click', (function(marker,infoboxHtml) {
             return function() {
@@ -73,8 +72,7 @@ function initialize() {
         marker = new google.maps.Marker({
             position: new google.maps.LatLng(testObj.lat, testObj.lng),
             map: map,
-            icon: icon,
-            title: testObj.title
+            icon: icon
         });
 
         map.setCenter(marker.getPosition());

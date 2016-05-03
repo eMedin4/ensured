@@ -601,12 +601,17 @@ body {
 	 flex-shrink: 0;
   }
 
+  .post-single .post-top {
+  	float: left;
+  }
+
   .post-main {
 
   }
 
 .post-single {
-	margin-top: 30px;
+	margin: 20px;
+    border: none;
 }
 
 .post-list header {
@@ -651,12 +656,12 @@ body {
     bottom: 2px;
 }
 
-.post-list h1 {
+.post h1,
+.post .h1 {
     font-family: "futura-pt",sans-serif;
     font-size: 20px;
     font-weight: 500;
     letter-spacing: -0.3px;
-    color: #465E82;
     padding-bottom: 4px;
 }
 
@@ -664,9 +669,12 @@ body {
     font-size: 60px;
     letter-spacing: -2px;
     font-weight: 400;	
+    line-height: 60px;
+    padding-bottom: 20px;
 }
 
-article h1 a {
+.post h1 a,
+.post .h1 a {
 	color: #333;
 }
 
@@ -678,7 +686,7 @@ article h1 a {
 }
 
 .post-single .post-meta {
-	padding-bottom: 10px;
+	padding-bottom: 3px;
 }
 
 .post-meta a {
@@ -715,7 +723,7 @@ article h1 a {
 }
 
 .post-single .post-extract {
-	padding-bottom: 14px;
+	padding-bottom: 3px;
 }
 
 .post-info {
@@ -772,19 +780,19 @@ article h1 a {
 }
 
 .meta-single {
-	background: #F7F7F7;
+    background: #F7F7F7;
     padding: 20px;
     text-align: center;
     font-size: 15px;
     font-weight: 400;
     color: #777;
-    margin-bottom: 20px;
+    margin: 20px;
 }
 
 .area-buttons {
-    padding-bottom: 40px;
+	padding-bottom: 40px;
     border-bottom: 1px solid #F7F7F7;
-    margin-bottom: 20px;
+    margin: 40px 20px 20px;
 }
 
 .social-buttons,
@@ -799,10 +807,11 @@ article h1 a {
 }
 
 .social-buttons > a {
-    padding: 8px 20px;
+    padding: 6px 20px;
     margin-right: 10px;
     display: inline-block;
     color: #fff;
+    border-radius: 3px;
 }
 
 .social-buttons i {
@@ -810,11 +819,19 @@ article h1 a {
 }
 
 a.share-facebook {
-	background: #798EB9;
+	background: #5B76AF;
+}
+
+a.share-facebook:hover {
+	background: #4A69AB;
 }
 
 a.share-twitter {
-	background: #8DD4FF;
+	background: #56BFFF;
+}
+
+a.share-twitter:hover {
+	background: #58ADEE;
 }
 
 .action-buttons span {
@@ -822,6 +839,18 @@ a.share-twitter {
     display: inline-block;
     color: #aaa;
 }
+
+.comments-wrap {
+	margin: 20px;
+    font-weight: 400;
+}
+
+.comment {
+	padding-bottom: 20px;
+    border-bottom: 1px solid #f7f7f7;
+    margin-bottom: 20px;
+}
+
 
 /*DROPDOWN DATES*/
 
@@ -1459,7 +1488,7 @@ ul.tagit li.tagit-choice .tagit-close {
 	color: #fff;
 	text-align: center;
     padding: 12px;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 .social-btn i {
@@ -1607,6 +1636,12 @@ button.account-btn {
         padding: 3px 5px;
 	}
 
+	article.post-single .icon-activity {
+		width: 46px;
+		font-size: 30px;
+		text-align: center;
+	}
+
 	article .icon-activity-vote {
 	    color: #ff6f05;
 	}
@@ -1640,6 +1675,12 @@ button.account-btn {
     background: #fff1e7;
     color: #333;
     transition: all 0.3s ease-in-out;
+	}
+
+	.post-single .count-votes {
+		width: 46px;
+		font-size: 32px;
+		padding: 6px 0;
 	}
 
 	.launch-votepost {

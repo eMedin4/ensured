@@ -22,13 +22,13 @@
 
 						<div class="search-box flex-row">
 							<input type="text" name="title" id="title" value="{{ old('title') }}" placeholder="Busca...">
-							<div class="search-options relative">
+<!-- 							<div class="search-options relative">
 								<span class="launch-selectable">Artículos<i class="fa fa-triangle-down"></i></span>
 								<nav class="selectable">
 									<span>Artículos</span>
 									<span>Hashtags</span>
 								</nav>
-							</div>
+							</div> -->
 							<button type="submit" class="btn-search"><i class="fa fa-search-btb"></i></button>
 						</div>
 

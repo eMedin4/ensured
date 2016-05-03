@@ -7,7 +7,7 @@
 			</a>
 		</div>
 
-		<p class="footer-text"> En desarrollo <span> elme79@gmail.com </span> 2016 </p>
+		<p class="footer-text"> En desarrollo <span> emed@ifithappens.net </span> 2016 </p>
 
 	</div>
 </div>

@@ -1,60 +1,57 @@
 
-<article class="post-list post-single" data-id="{{ $post->id }}" data-link = {{ route('single', ['id' => $post, 'title' => $post->slug]) }}>
+<!-- -flex-row -->
+<article class="post post-list post-single" data-id="{{ $post->id }}" data-link = {{ route('single', ['id' => $post, 'title' => $post->slug]) }}>
 
-	<header>
+	<div class="post-top">
 		@include('partials.votes')
-		<h1>{{ $post->title }}</h1>
-	</header>
+	</div>
 
-	@if ($post->url || !$post->tags->isEmpty())
-		<div class="post-meta">
+	<div class="post-main">
 
-			@if ($post->url)
-				<a class="post-link" href="{{ $post->url }}" target="_blank" rel="nofollow">
-					<img src="http://www.google.com/s2/favicons?domain={{ $post->url }}">
-					{{ $post->urldomain }}
-				</a>
-			@endif
+		<h1><a href="{{ route('single', ['id' => $post, 'title' => $post->slug]) }}">{{ $post->title }}</a></h1>
 
-	 		@if (!$post->tags->isEmpty())
-				<p class="post-tags">
-					<i class="fa fa-tag-outline"></i>
-					<?php $prefix = ''; ?>
-					@foreach($post->tags as $i => $tag)<?php echo $prefix; ?> <a href="#">{{ $tag->name }}</a><?php $prefix = ',' ?>@endforeach
-				</p>
-			@endif 
-		</div>
-	@endif
+		@if ($post->url || !$post->tags->isEmpty())
+			<div class="post-meta">
 
-	<p class="post-extract">{{ $post->content }}</p>
+				@if ($post->url)
+					<a class="post-link" href="{{ $post->url }}" target="_blank" rel="nofollow">
+						<img src="http://www.google.com/s2/favicons?domain={{ $post->url }}">
+						{{ $post->urldomain }}
+					</a>
+				@endif
 
-	<div class="post-info">
+		 		@if (!$post->tags->isEmpty())
+					<p class="post-tags">
+						<i class="fa fa-tag-outline"></i>
+						<?php $prefix = ''; ?>
+						@foreach($post->tags as $i => $tag)<?php echo $prefix; ?> <a href="#">{{ $tag->name }}</a><?php $prefix = ',' ?>@endforeach
+					</p>
+				@endif 
+			</div>
+		@endif
 
-		<div class="post-info-left">
+		<p class="post-extract">{{ nl2br(e($post->content)) }}</p>
 
-			<i class="fa fa-calendar-text icon-calendar"></i>
-			@include('partials.dates')
+		<div class="post-info">
 
-			<i class="fa fa-location-arrow-outline icon-location"></i>
-			{{ $post->location }}
+			<div class="post-info-left">
+				<i class="fa fa-calendar-text icon-calendar"></i>
+				@include('partials.dates')
+				<i class="fa fa-location-arrow-outline icon-location"></i>
+				{{ $post->location }}
+			</div>
 
-
-		</div>
-
-		<div class="post-info-right">
-
-			@if ($post->num_comments)
-				<i class="fa fa-comment-text-outline icon-comments"></i> 
-				<span class="post-comments-count">{{ $post->num_comments }}</span>
-			@endif	
-
-			<span class="post-collections">
-				@include('partials.collections')
-			</span>
+			<div class="post-info-right">
+				@if ($post->num_comments)
+					<i class="fa fa-comment-text-outline icon-comments"></i> 
+					<span class="post-comments-count">{{ $post->num_comments }}</span>
+				@endif	
+				<span class="post-collections">@include('partials.collections')</span>
+			</div>
 
 		</div>
 
-	</div><!-- post-info -->
+	</div><!-- post-main -->
 
 </article>
 
@@ -77,11 +74,21 @@
 		        <i class="fa fa-twitter"></i>Compartir en twitter
 		    </a>
 		</div>
+		
 		<div class="action-buttons">
-			<span>Reportar<i class="fa fa-flag"></i></span>
-			@if(Auth::check() && Auth::user()->id == $post->user->id)
-				<a class="meta-link" href="#">borrar</a>
-				<a class="meta-link" href="{{ route('edit', $post) }}">editar</a>
+			@if(Auth::check())
+				<select name="report">
+					<option value="opcion" selected>Voto negativo</option>
+					<option value="irrelevante">por irrelevante</option>
+					<option value="antigua">por antigua</option>
+					<option value="spam">por spam</option>
+					<option value="duplicada">por duplicada</option>
+					<option value="errónea">por errónea</option>
+				</select>
+				@if(Auth::user()->id == $post->user->id)
+					<a class="meta-link" href="#">borrar</a>
+					<a class="meta-link" href="{{ route('edit', $post) }}">editar</a>
+				@endif
 			@endif
 		</div>
 	</div>
@@ -90,5 +97,6 @@
 
 
 
-
-@include('partials.comments')
+	<div class="comments-wrap">
+		@include('partials.comments')
+	</div>
