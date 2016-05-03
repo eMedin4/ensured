@@ -47,7 +47,7 @@ class PostRepository {
         return
             $this->myVotes($user, $ip)
             ->orderBy('score', 'DESC')
-            ->paginate(10);
+            ->paginate(40);
     }
 
 
@@ -60,7 +60,7 @@ class PostRepository {
                     ->whereRaw("$where AND dates.post_id = posts.id");
             })
             ->orderBy('score', 'DESC')
-            ->paginate(10);
+            ->paginate(40);
     }
 
     public function collection($id)
@@ -69,7 +69,7 @@ class PostRepository {
             ->whereHas('collections', function ($query) use($id) {
                 $query->where('collection_id', $id);
             })
-            ->paginate(10);
+            ->paginate(40);
     }
 
     public function tag($tag)
@@ -78,7 +78,7 @@ class PostRepository {
             ->whereHas('tags', function ($query) {
                 $query->whereIn('tag_id', [3,1]);
             })
-            ->paginate(10);
+            ->paginate(40);
     }
 
     public function search($keywords)
@@ -90,7 +90,7 @@ class PostRepository {
                     $query->orWhere('content', 'like', "%{$word}%");
                 }
             })
-            ->paginate(10);
+            ->paginate(40);
     }
 
     public function paginateMaxScored()
@@ -98,7 +98,7 @@ class PostRepository {
     	return $this->selectPostsList()
             ->where('score', '>', 200)
             ->orderBy('score', 'DESC')
-            ->paginate(10);
+            ->paginate(40);
     }
 
     public function single($id)

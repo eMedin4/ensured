@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 
 use Auth;
 use DateTime;
+use Gate;
 use Carbon\Carbon;
 use Ensured\Http\Requests;
 use Ensured\Http\Controllers\Controller;
@@ -66,6 +67,23 @@ class PostController extends Controller
         $tags = Tag::lists('name');
         return view('pages.create', compact('tags'));
     }
+
+
+    public function edit($id)
+    {
+        $tags = Tag::lists('name');
+        $post = $this->postRepository->single($id);
+
+
+        /*Llamamos a la habilidad (Authorization) declarada en AuthServiceProvider,
+        si no es el autor del post lo deniega*/
+        if (Gate::denies('update-post', $post)) {
+            return back();
+        }       
+
+        return view('pages.create', compact('post', 'tags'));
+    }
+
 
 
     public function store(Request $request)
@@ -153,12 +171,6 @@ class PostController extends Controller
 
     }
 
-
-    public function edit($id)
-    {
-        $post = $this->postRepository->single($id);
-        return view('pages.edit', compact('post'));
-    }
 
     public function update($id, Request $request)
     {

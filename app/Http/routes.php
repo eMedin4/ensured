@@ -43,11 +43,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('votarpost', 
             ['as' => 'postvote', 'uses' => 'VoteController@postvote']); 
 
-        Route::get('/editar/{id}',
-            ['as' => 'edit', 'uses' => 'PostController@edit'])->where('id', '[0-9]+'); 
 
-        Route::patch('/editar/{id}',
-            ['as' => 'update', 'uses' => 'PostController@update']);
 
 
     /*
@@ -107,6 +103,12 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::post('guardar', 
     	['as' => 'store', 'uses' => 'PostController@store']);
+
+    Route::get('/editar/{id}',
+        ['as' => 'edit', 'uses' => 'PostController@edit'])->where('id', '[0-9]+'); 
+
+    Route::patch('/editar/{id}',
+        ['as' => 'update', 'uses' => 'PostController@update']);
 
     Route::post('livesearch', 
         ['as' => 'livesearch', 'uses' => 'SearchController@liveSearch']);
