@@ -30,7 +30,7 @@
 			</div>
 		@endif
 
-		<p class="post-extract">{{ nl2br(e($post->content)) }}</p>
+		<p class="post-extract">{!! nl2br(e($post->content)) !!}</p>
 
 		<div class="post-info">
 
