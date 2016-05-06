@@ -65,13 +65,15 @@ class PostController extends Controller
     public function create()
     {
         $tags = Tag::lists('name');
-        return view('pages.create', compact('tags'));
+        $route = route('store');
+        return view('pages.create', compact('tags', 'route'));
     }
 
 
     public function edit($id)
     {
         $tags = Tag::lists('name');
+        $route = route('update', ['id' => $id]);
         $post = $this->postRepository->single($id);
 
 
@@ -81,7 +83,7 @@ class PostController extends Controller
             return back();
         }       
 
-        return view('pages.create', compact('post', 'tags'));
+        return view('pages.create', compact('post', 'tags', 'route'));
     }
 
 
@@ -162,7 +164,7 @@ class PostController extends Controller
 
         if ($request->input('tags')) {
             foreach ($request->input('tags') as $tagname) {
-                $tag = Tag::create(['name' => $tagname]);
+                $tag = Tag::firstOrCreate(['name' => $tagname]);
                 $post->tags()->attach($tag);
             }
         }
@@ -174,25 +176,89 @@ class PostController extends Controller
 
     public function update($id, Request $request)
     {
+
+
         $rules = $this->rules($request->all());
 
         if($rules['input-multi-dates-format'] == 'error') {
             return Redirect::back()->withInput()->withErrors('hola');
         }
 
+
+        if ($request->input('datestype') == 'single-date') {
+            $datestype = 1;
+        }
+        elseif ($request->input('datestype') == 'interval-dates') {
+            $datestype = 2;
+        }
+        elseif ($request->input('datestype') == 'multi-dates') {
+            $datestype = 3;
+        } else {
+            return Redirect::back()->withInput()->withErrors('hola');
+        }
+
         $this->validate($request,$rules);
 
+        /*cambia con store*/
         $post = Post::find($id);
+
         $post->title = $request->input('title');
         $post->location = $request->input('location');
         $post->content = $request->input('content');
         $post->lat = $request->input('lat');
         $post->lng = $request->input('lng');
         $post->url = $request->input('url');
+        $post->datestype = $datestype;
         $post->user_id = Auth::user()->id;
-        $post->save();  
+        $post->save();
         
-        return Redirect::route('single', [$post->id, $post->title]);      
+        /*cambia con store*/
+        Date::where('post_id', $post->id)->delete();
+
+        if ($datestype == 1) {
+
+            $date = new Date();
+            $date->post_id = $post->id;
+            $datetime = DateTime::createFromFormat('d/m/y', $request->input('input-single-date'));
+            $date->date = $datetime->format('Y-m-d');
+            $date->save();
+
+        } elseif ($datestype == 2) {
+
+            $date = new Date();
+            $datetime = DateTime::createFromFormat('d/m/y', $request->input('input-from-date'));
+            $date->post_id = $post->id;
+            $date->date = $datetime->format('Y-m-d');
+            $date->save();
+
+            $date = new Date();
+            $datetime = DateTime::createFromFormat('d/m/y', $request->input('input-to-date'));
+            $date->post_id = $post->id;
+            $date->date = $datetime->format('Y-m-d');
+            $date->save();
+
+        } elseif ($datestype == 3) {
+
+            $dates = array_map('trim', explode(',', $request->input('input-multi-dates')));
+
+            foreach($dates as $key => $val) {
+                $date = new Date();
+                $datetime = DateTime::createFromFormat('d/m/y', $val);
+                $date->post_id = $post->id;
+                $date->date = $datetime->format('Y-m-d');
+                $date->save();
+            }
+
+        }
+
+        if ($request->input('tags')) {
+            foreach ($request->input('tags') as $tagname) {
+                $tag = Tag::create(['name' => $tagname]);
+                $post->tags()->attach($tag);
+            }
+        }
+
+        return Redirect::route('single', [$post->id, $post->title]);
 
     }
 

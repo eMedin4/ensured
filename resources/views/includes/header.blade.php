@@ -14,7 +14,7 @@
 
 			<a class="menu-home" href="{{ route('main') }}">Portada</a>
 
-			<div class="relative menu-search">
+			<div class="menu-search">
 				<span class="launch-dd-menu launch-sub-menu">Buscar</span>
 				<div class="dd-menu sub-menu">
 					<form method="GET" action="{{ route('search') }}">
@@ -36,15 +36,14 @@
 				</div>
 			</div>
 
-			<div class="relative menu-dates">
+			<div class="menu-dates">
 				<span class="launch-dd-menu launch-sub-menu">Fechas</span>
 				<nav class="dd-menu sub-menu sub-nav-flex">
 					<a href="{{ route('today') }}"><span>Hoy</span> <time>{{ $dateformat['today'] }}</time></a>
 					<a href="{{ route('tomorrow') }}"><span>Mañana</span> <time>{{ $dateformat['tomorrow'] }}</time></a>
 					<a href="{{ route('week') }}"><span>Esta semana</span> <time>{{ $dateformat['week'] }}</time></a>
-					<a href="{{ route('weekend') }}"><span>Este fin de semana</span> <time>{{ $dateformat['weekend'] }}</time></a>
+					<a href="{{ route('weekend') }}"><span>Fin de semana</span> <time>{{ $dateformat['weekend'] }}</time></a>
 					<a href="{{ route('month') }}"><span>Este mes</span> <time>{{ $dateformat['month'] }}</time></a>				
-					<span class="launch-menu-picker"><i class="fa fa-calendar-text icon-calendar"></i>Seleccionar un día</span>	
 				</nav>
 			</div>
 
@@ -62,7 +61,7 @@
 			    <a class="menu-register" href="{{ route('getregister') }}">Regístrate</a>
 				<a class="menu-login" href="{{ route('getlogin') }}">Entra</a>
 			@else
-				<div class="relative menu-lists">
+				<div class="menu-lists">
 					<span class="launch-dd-menu launch-sub-menu launch-menu-collections" data-url="{{ route('menucollection')}}">Listas</span>
 					<nav class="dd-menu sub-menu sub-nav-flex header-collections"></nav>
 				</div>

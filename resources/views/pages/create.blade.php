@@ -8,7 +8,8 @@
 		{{dd(old())}}
 	@endif  -->--}}
 
-	<form method="POST" action="{{ route('store') }}">
+
+	<form method="POST" action="{!! $route !!}">
 
 	    {!! csrf_field() !!}
 		@include('partials.formerrors')

@@ -431,33 +431,34 @@ $('.launch-menu-collections').on('click', function() {
      	$(this).removeClass('focus');
      });
 
-     $("#myTags").tagit({
-     	fieldName: "tags[]",
-	    availableTags: tags,
-	    removeConfirmation:true,
-    	placeholderText:"Etiquetas"
-	});
+
     
-    /* Rellenar tags automáticamente cuando el forumlario crear devuelve error */
-    var oldtagslength = oldtags.length;
-    if (oldtagslength > 0) {
-    	for (var i=0; i<oldtagslength; i++) {
-    		$("#myTags").tagit("createTag", oldtags[i]);
-    	}
-    }
 
 
-     $('.tagsearch').on('click', '.tag', function(e) {
-     	var tag = $(this).text();
-     	$("#myTags").tagit("createTag", tag);
-     });
 
 
-/*
-	DATEPICKER & SELECT DATES
-*/
 
     if($('body').is('.createpage')) {
+
+	    $("#myTags").tagit({
+	     	fieldName: "tags[]",
+		    availableTags: tags,
+		    removeConfirmation:true,
+	    	placeholderText:"Etiquetas"
+		});
+
+	    /* Rellenar tags automáticamente cuando el forumlario crear devuelve error */
+	    var oldtagslength = oldtags.length;
+	    if (oldtagslength > 0) {
+	    	for (var i=0; i<oldtagslength; i++) {
+	    		$("#myTags").tagit("createTag", oldtags[i]);
+	    	}
+	    }
+
+	     $('.tagsearch').on('click', '.tag', function(e) {
+	     	var tag = $(this).text();
+	     	$("#myTags").tagit("createTag", tag);
+	     });    	
     	
 		/*traduccion*/
 		$.datepicker.regional['es'] = {
@@ -530,6 +531,33 @@ $('.launch-menu-collections').on('click', function() {
 
 
 	};
+
+/* POPUP DE CONFIRMACIÓN PARA VOTOS NEGATIVOS */
+
+$('.report').on('change', function() {
+	var option = $(this).val();
+	var html = "<div>¿Desdeas votar " + option + "?</div><button class='btn launch-votepost-report'>Si</button><button class='btn'>No</button>";
+	$('.popup').html(html);
+	$('.popup, .popup-back').fadeIn(300);
+});
+
+$('.popup').one('click', '.launch-votepost-report', function() {
+
+	var report = $('.report');
+	var id = report.data('id');
+	var url = report.data('url');
+	var option = report.val();
+
+	$.ajax({
+		url: url,
+		type: 'POST',
+		data: { 'post_id': id, 'option': option }
+	})
+	.done(function(data) {
+		console.log('echo');
+	});
+
+});
 
 
 

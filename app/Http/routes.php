@@ -107,7 +107,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/editar/{id}',
         ['as' => 'edit', 'uses' => 'PostController@edit'])->where('id', '[0-9]+'); 
 
-    Route::patch('/editar/{id}',
+    Route::post('/editar/{id}',
         ['as' => 'update', 'uses' => 'PostController@update']);
 
     Route::post('livesearch', 
@@ -121,6 +121,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::post('votarcomentario',
         ['as' => 'commentvote', 'uses' => 'CommentController@commentvote']);
+
+    Route::post('reportarpost', 
+        ['as' => 'postreport', 'uses' => 'VoteController@postreport']); 
 
     /*
         COLECCIONES

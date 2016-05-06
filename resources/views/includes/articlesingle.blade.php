@@ -77,7 +77,7 @@
 		
 		<div class="action-buttons">
 			@if(Auth::check())
-				<select name="report">
+				<select name="report" class="report" data-id="{{ $post->id }}" data-url="{{ route('postreport')}}">
 					<option value="opcion" selected>Voto negativo</option>
 					<option value="irrelevante">por irrelevante</option>
 					<option value="antigua">por antigua</option>
@@ -89,12 +89,25 @@
 					<a class="meta-link" href="#">borrar</a>
 					<a class="meta-link" href="{{ route('edit', $post) }}">editar</a>
 				@endif
+			@else
+				<div>Los usuarios registrados pueden votar negativo cualquier publicación</div>
 			@endif
 		</div>
 	</div>
 
 
-
+		<div>
+			<script type="text/javascript">
+			    google_ad_client = "ca-pub-6109753695990397";
+			    google_ad_slot = "2167829860";
+			    google_ad_width = 336;
+			    google_ad_height = 280;
+			</script>
+			<!-- test -->
+			<script type="text/javascript"
+			src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+		</div>
 
 
 	<div class="comments-wrap">

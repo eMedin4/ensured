@@ -16,11 +16,11 @@ class HeaderComposer
 
     public function createformat()
     {
-        $today = rtrim(Carbon::today()->formatLocalized('%A %e %b'), '.');
-        $tomorrow = rtrim(Carbon::tomorrow()->formatLocalized('%A %e %b'), '.');
-        $week = rtrim(Carbon::today()->formatLocalized('%e %b'), '.') . '-' . rtrim(Carbon::today()->addWeek()->formatLocalized('%e %b'), '.');
-        $weekend = rtrim(Carbon::today()->parse('next saturday')->formatLocalized('%e %b'), '.') . '-' . rtrim(Carbon::today()->parse('next sunday')->formatLocalized('%e %b'), '.');
-        $month = rtrim(Carbon::today()->formatLocalized('%e %b'), '.') . '-' . rtrim(Carbon::today()->addMonth()->formatLocalized('%e %b'), '.');
+        $today = rtrim(Carbon::today()->formatLocalized('%A %e'), '.');
+        $tomorrow = rtrim(Carbon::tomorrow()->formatLocalized('%A %e'), '.');
+        $week = rtrim(Carbon::today()->formatLocalized('%e %b'), '.') . ' - ' . rtrim(Carbon::today()->addWeek()->formatLocalized('%e %b'), '.');
+        $weekend = rtrim(Carbon::today()->parse('next saturday')->formatLocalized('%e %b'), '.') . ' - ' . rtrim(Carbon::today()->parse('next sunday')->formatLocalized('%e %b'), '.');
+        $month = rtrim(Carbon::today()->formatLocalized('%e %b'), '.') . ' - ' . rtrim(Carbon::today()->addMonth()->formatLocalized('%e %b'), '.');
          
 
         return $dateformat = [

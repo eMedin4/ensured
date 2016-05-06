@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Ensured\Http\Controllers\Controller;
 use Ensured\Entities\Post;
 use Ensured\Entities\PostVote;
+use Ensured\Entities\PostReport;
 
 class VoteController extends Controller
 {
@@ -42,6 +43,21 @@ class VoteController extends Controller
         $post->save();
 
     	return response()->json(['state' => true, 'count' => $count]);
+
+    }
+
+    public function postreport(Request $request)
+    {
+
+        if( ! $request->ajax()) {       
+            return back(); 
+        }
+
+        $report = new PostReport;
+        $report->user_id = Auth::user()->id;
+        $report->post_id = $request->post_id;
+        $report->option = $request->option;
+        $report->save();
 
     }
 }

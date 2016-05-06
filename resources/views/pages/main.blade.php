@@ -10,7 +10,7 @@
 			<h1> {!! $title !!} </h1>
 		</section>
 
-		<section class="ad">
+		<div class="ad">
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<!-- postlist -->
 			<ins class="adsbygoogle"
@@ -21,7 +21,9 @@
 			<script>
 			(adsbygoogle = window.adsbygoogle || []).push({});
 			</script>
-		</section>
+		</div>
+
+
 
 		<section class="main-content">
 			@foreach($posts as $post)
