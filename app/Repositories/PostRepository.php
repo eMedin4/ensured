@@ -28,16 +28,16 @@ class PostRepository {
         if ($user) {
             return 
                 $this->selectPostsList()
-                ->leftJoin('postvotes as myvote', function($query) use($user) {
+                ->leftJoin('postvotes as myvote', function($query) use($user, $hexip) {
                     $query->on('myvote.post_id', '=', 'posts.id')
-                          ->on('myvote.user_id', '=', DB::raw($user));
+                          ->on(DB::raw("(myvote.user_id = '$user' Or HEX(myvote.ip_address) = '$hexip')"), DB::raw(''), DB::raw(''));
                 });
         } else {
             return
                 $this->selectPostsList()
                 ->leftJoin('postvotes as myvote', function($query) use($hexip) {
                     $query->on('myvote.post_id', '=', 'posts.id')
-                          ->on(DB::raw('HEX(myvote.ip_address)'), '=', DB::raw("'$hexip'"));
+                          ->on(DB::raw("HEX(myvote.ip_address) = '$hexip'"), DB::raw(''), DB::raw(''));
             });
         }
     }

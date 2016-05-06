@@ -17,34 +17,38 @@
 			<div class="menu-search">
 				<span class="launch-dd-menu launch-sub-menu">Buscar</span>
 				<div class="dd-menu sub-menu">
-					<form method="GET" action="{{ route('search') }}">
-						{!! csrf_field() !!}
+					<div class="nav-inner">
+						<form method="GET" action="{{ route('search') }}">
+							{!! csrf_field() !!}
 
-						<div class="search-box flex-row">
-							<input type="text" name="title" id="title" value="{{ old('title') }}" placeholder="Busca...">
-<!-- 							<div class="search-options relative">
-								<span class="launch-selectable">Artículos<i class="fa fa-triangle-down"></i></span>
-								<nav class="selectable">
-									<span>Artículos</span>
-									<span>Hashtags</span>
-								</nav>
-							</div> -->
-							<button type="submit" class="btn-search"><i class="fa fa-search-btb"></i></button>
-						</div>
+							<div class="search-box flex-row">
+								<input type="text" name="title" id="title" value="{{ old('title') }}" placeholder="Busca...">
+	<!-- 							<div class="search-options relative">
+									<span class="launch-selectable">Artículos<i class="fa fa-triangle-down"></i></span>
+									<nav class="selectable">
+										<span>Artículos</span>
+										<span>Hashtags</span>
+									</nav>
+								</div> -->
+								<button type="submit" class="btn-search"><i class="fa fa-search-btb"></i></button>
+							</div>
 
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 
 			<div class="menu-dates">
 				<span class="launch-dd-menu launch-sub-menu">Fechas</span>
-				<nav class="dd-menu sub-menu sub-nav-flex">
-					<a href="{{ route('today') }}"><span>Hoy</span> <time>{{ $dateformat['today'] }}</time></a>
-					<a href="{{ route('tomorrow') }}"><span>Mañana</span> <time>{{ $dateformat['tomorrow'] }}</time></a>
-					<a href="{{ route('week') }}"><span>Esta semana</span> <time>{{ $dateformat['week'] }}</time></a>
-					<a href="{{ route('weekend') }}"><span>Fin de semana</span> <time>{{ $dateformat['weekend'] }}</time></a>
-					<a href="{{ route('month') }}"><span>Este mes</span> <time>{{ $dateformat['month'] }}</time></a>				
-				</nav>
+				<div class="dd-menu sub-menu">
+					<nav class="sub-nav-flex nav-inner">
+						<a href="{{ route('today') }}"><span>Hoy</span> <time>{{ $dateformat['today'] }}</time></a>
+						<a href="{{ route('tomorrow') }}"><span>Mañana</span> <time>{{ $dateformat['tomorrow'] }}</time></a>
+						<a href="{{ route('week') }}"><span>Esta semana</span> <time>{{ $dateformat['week'] }}</time></a>
+						<a href="{{ route('weekend') }}"><span>Fin de semana</span> <time>{{ $dateformat['weekend'] }}</time></a>
+						<a href="{{ route('month') }}"><span>Este mes</span> <time>{{ $dateformat['month'] }}</time></a>
+					</nav>				
+				</div>
 			</div>
 
 <!-- 			<div class="relative menu-tags">

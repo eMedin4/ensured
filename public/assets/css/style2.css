@@ -383,7 +383,7 @@ i.avatar-me-extra {
     top: 46px;
     left: 50%;
     border: 6px solid #000;
-    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #F7F7F7 #F7F7F7;
+    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #ECECEC #ECECEC;
     transform-origin: 0 0;
     transform: rotate(135deg);
     z-index: 100;
@@ -410,22 +410,27 @@ i.avatar-me-extra {
 
 .sub-nav-flex {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.nav-inner {
+	width: 50%;
+    float: right;
 }
 
 .sub-menu {
 	min-height: 70px;
-    left: 50%;
+    left: 4px;
     right: 4px;
-    flex-direction: row;
     box-shadow: none;
     background: #F7F7F7;
+    background: rgba(234,234,234,0.9);
     padding: 12px;
     letter-spacing: -0.3px;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    align-items: center;
-    text-align: center;
 }
 
 .sub-menu a {
@@ -476,7 +481,7 @@ i.avatar-me-extra {
     width: 100%;
     padding: 20px 20px 20px 60px;
     height: 70px;
-    background: #f7f7f7;
+    background: transparent;
 }
 
 .search-options {
@@ -487,11 +492,12 @@ i.avatar-me-extra {
 }
 
 .btn-search {
-    background: #FFF1E7;
-    color: #333;
+    background: transparent;
+    color: #777;
     min-width: 40px;
     padding: 16px 18px;
     font-size: 14px;
+    margin-right: 40px;
 }
 
 .btn-search:hover {
@@ -541,7 +547,7 @@ body {
 	right: 50%;
 	/*responsive animation map*/
 	transition: all 0.5s ease;
-	z-index: 9;
+	z-index: 9999;
 }
 
 .right-50 {
@@ -557,8 +563,8 @@ body {
 }
 
 .main-header {
-    margin: 12px 20px 20px;
-    border-bottom: 1px solid #f7f7f7;
+    margin: 19px 20px 14px;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .main-content {
@@ -569,12 +575,11 @@ body {
     font-family: "futura-pt",sans-serif;
     font-size: 20px;
     font-weight: 500;
-    color: #333333;
-    border-bottom: 1px solid #333333;
-    padding-bottom: 8px;
+    color: #777;
     display: inline-block;
-    padding: 0 4px 8px;
+    padding-bottom: 20px;
     letter-spacing: -0.5px;
+    margin-left: 38px;
 }
 
 .limit {
