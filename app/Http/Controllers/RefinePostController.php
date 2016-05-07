@@ -4,6 +4,7 @@ namespace Ensured\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
 use Ensured\Http\Requests;
 use Ensured\Http\Controllers\Controller;
 use Ensured\Entities\Post;
@@ -22,7 +23,9 @@ class RefinePostController extends Controller
     public function today() 
     {
     	$where = "dates.date = CURDATE()";
-    	$posts = $this->postRepository->time($where);
+        $ip = request()->ip();
+        $user = Auth::user() ? Auth::user()->id : null;
+    	$posts = $this->postRepository->time($where, $user, $ip)->paginate(40);
     	$title = "Hoy";
     	$toJs = $posts->toJson();
         return view('pages.main', compact('posts', 'title', 'toJs'));
@@ -31,7 +34,9 @@ class RefinePostController extends Controller
     public function tomorrow() 
     {
 		$where = "dates.date = CURDATE() + INTERVAL 1 DAY";
-    	$posts = $this->postRepository->time($where);
+        $ip = request()->ip();
+        $user = Auth::user() ? Auth::user()->id : null;
+        $posts = $this->postRepository->time($where, $user, $ip)->paginate(40);
     	$title = "Mañana";
     	$toJs = $posts->toJson();
         return view('pages.main', compact('posts', 'title', 'toJs'));
@@ -42,7 +47,9 @@ class RefinePostController extends Controller
 		$start=date('Y-m-d', strtotime('next saturday'));
 		$end=date('Y-m-d', strtotime('next sunday'));
 		$where = "dates.date >= $start AND dates.date <= $end";
-    	$posts = $this->postRepository->time($where);
+        $ip = request()->ip();
+        $user = Auth::user() ? Auth::user()->id : null;
+        $posts = $this->postRepository->time($where, $user, $ip)->paginate(40);
     	$title = "Este fin de semana";
     	$toJs = $posts->toJson();
         return view('pages.main', compact('posts', 'title', 'toJs'));
@@ -51,7 +58,9 @@ class RefinePostController extends Controller
     public function Week() 
     {
     	$where = "dates.date >= CURDATE() AND dates.date < CURDATE() + INTERVAL 7 DAY";
-    	$posts = $this->postRepository->time($where);
+        $ip = request()->ip();
+        $user = Auth::user() ? Auth::user()->id : null;
+        $posts = $this->postRepository->time($where, $user, $ip)->paginate(40);
     	$title = "Esta semana <small>+7 días </small>";
     	$toJs = $posts->toJson();
         return view('pages.main', compact('posts', 'title', 'toJs'));
@@ -60,7 +69,9 @@ class RefinePostController extends Controller
     public function Month() 
     {
     	$where = "dates.date >= CURDATE() AND dates.date < CURDATE() + INTERVAL 30 DAY";
-    	$posts = $this->postRepository->time($where);
+        $ip = request()->ip();
+        $user = Auth::user() ? Auth::user()->id : null;
+        $posts = $this->postRepository->time($where, $user, $ip)->paginate(40);
     	$title = "Este mes <small>+30 días </small>";
     	$toJs = $posts->toJson();
         return view('pages.main', compact('posts', 'title', 'toJs'));
@@ -69,7 +80,9 @@ class RefinePostController extends Controller
     public function Pasts() 
     {
     	$where = "dates.date > CURDATE()";
-    	$posts = $this->postRepository->time($where);
+        $ip = request()->ip();
+        $user = Auth::user() ? Auth::user()->id : null;
+        $posts = $this->postRepository->time($where, $user, $ip)->paginate(40);
     	$title = "Ya iniciados o pasados";
     	$toJs = $posts->toJson();
         return view('pages.main', compact('posts', 'title', 'toJs'));

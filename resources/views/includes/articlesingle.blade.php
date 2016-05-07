@@ -68,10 +68,10 @@
 		<div class="social-buttons">
 	<!-- 	    <a href="https://www.facebook.com/sharer/sharer.php?u={{request()->fullUrl()}}" target="_blank"> -->
 		    <a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.damirmiladinov.com/" target="_blank">
-		       <i class="fa fa-facebook"></i>Compartir en facebook
+		       <i class="fa fa-facebook"></i>Compártelo
 		    </a>
 		    <a class="share-twitter" href="https://twitter.com/intent/tweet?url=http://blog.damirmiladinov.com/" target="_blank">
-		        <i class="fa fa-twitter"></i>Compartir en twitter
+		        <i class="fa fa-twitter"></i>Compártelo
 		    </a>
 		</div>
 		

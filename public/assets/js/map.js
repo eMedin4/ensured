@@ -70,7 +70,7 @@ function initialize() {
     if($('body').is('.singlepage')) {
 
         marker = new google.maps.Marker({
-            position: new google.maps.LatLng(testObj.lat, testObj.lng),
+            position: new google.maps.LatLng(toJs.lat, toJs.lng),
             map: map,
             icon: icon
         });

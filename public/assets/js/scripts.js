@@ -318,11 +318,11 @@ $('.launch-menu-collections').on('click', function() {
   		t.siblings('.dd-menu').toggleClass('open-menu');
   	});
 
-  	$('html').on('click', '.launch-dd-menu, .dd-menu', function(e) {
+  	$('body').on('click', '.launch-dd-menu, .dd-menu', function(e) {
   		e.stopPropagation();
   	});
 
-  	$('html').on('click', function(){
+  	$('.content').on('click', function(){
       	$('.launch-dd-menu').removeClass('open');
       	$('.dd-menu').removeClass('open-menu');
   	});

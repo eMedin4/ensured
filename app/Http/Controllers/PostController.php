@@ -38,14 +38,8 @@ class PostController extends Controller
     public function main()
     {
         $ip = request()->ip();
-/*        $binip = inet_pton($ip);
-        $hexip = bin2hex($binip);
-
-        $arr = [$ip, $binip, $hexip];
-        dd($arr);*/
-
         $user = Auth::user() ? Auth::user()->id : null;
-        $posts = $this->postRepository->paginateMain($user, $ip);
+        $posts = $this->postRepository->main($user, $ip)->paginate(40);
         $title = "Portada";
         $toJs = $posts->toJson();
         return view('pages.main', compact('posts', 'title', 'toJs'));
