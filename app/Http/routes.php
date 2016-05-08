@@ -6,7 +6,7 @@ Route::group(['middleware' => 'web'], function () {
 
 
     /*
-        LOGIN
+        LOGINent
     */
         Route::get('entrar',
             ['as' => 'getlogin', 'uses' => 'AuthController@getLogin']);
@@ -50,22 +50,22 @@ Route::group(['middleware' => 'web'], function () {
         POST FILTERS
     */
 
-        Route::get('hoy', 
+        Route::get('/fecha/hoy', 
             ['as' => 'today', 'uses' => 'RefinePostController@today']);
 
-        Route::get('mañana', 
+        Route::get('/fecha/mañana', 
             ['as' => 'tomorrow', 'uses' => 'RefinePostController@tomorrow']);
 
-        Route::get('semana', 
+        Route::get('/fecha/semana', 
             ['as' => 'week', 'uses' => 'RefinePostController@week']);
 
-        Route::get('findesemana', 
+        Route::get('/fecha/findesemana', 
             ['as' => 'weekend', 'uses' => 'RefinePostController@weekend']);
 
-        Route::get('mes', 
+        Route::get('/fecha/mes', 
             ['as' => 'month', 'uses' => 'RefinePostController@month']);
 
-        Route::get('pasados', 
+        Route::get('/fecha/pasados', 
             ['as' => 'pasts', 'uses' => 'RefinePostController@pasts']);
 
         Route::get('listas/{id}/{collection}',
@@ -83,11 +83,11 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/perfil/{username}', 
             ['as' => 'profile', 'uses' => 'AuthController@showProfile']);
 
-        Route::get('/{username}/actividad/{filter?}', 
+        Route::get('/perfil/actividad/{username}/{filter?}', 
             ['as' => 'filteractivity', 'uses' => 'ActivitiesController@show']);
 
 
-        Route::get('/{username}/listas', 
+        Route::get('/perfil/listas/{username}', 
             ['as' => 'pagecollections', 'uses' => 'CollectionController@pagedetails']);
 
 

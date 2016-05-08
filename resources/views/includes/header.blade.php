@@ -62,8 +62,8 @@
 
 
 			@if (Auth::guest()) 
-			    <a class="menu-register" href="{{ route('getregister') }}">Regístrate</a>
-				<a class="menu-login" href="{{ route('getlogin') }}">Entra</a>
+			    <a class="menu-register" href="{{ route('getregister') }}" rel="nofollow">Regístrate</a>
+				<a class="menu-login" href="{{ route('getlogin') }}" rel="nofollow">Entra</a>
 			@else
 				<div class="menu-lists">
 					<span class="launch-dd-menu launch-sub-menu launch-menu-collections" data-url="{{ route('menucollection')}}">Listas</span>

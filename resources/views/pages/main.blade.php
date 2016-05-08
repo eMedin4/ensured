@@ -1,6 +1,7 @@
 @extends('layouts.split')
 
-@section('title', 'Barcelona, ¿qué haces hoy?')
+@section('title', 'Barcelona, la nueva guia de actividades | ifithappens')
+@section('meta', '<meta name="description" content="Guia social de actividades de Barcelona, participa o entérate de todo lo que ocurre cerca de ti">')
 
 @section('bodyclass', 'mainpage')
 

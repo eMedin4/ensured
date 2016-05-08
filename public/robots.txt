@@ -1,2 +1,10 @@
 User-agent: *
-Disallow:
+Disallow: /entrar
+Disallow: /salir
+Disallow: /registro
+Disallow: /social
+Disallow: /fecha
+Disallow: /listas
+Disallow: /buscar
+Disallow: /perfil/actividad
+Disallow: /perfil/listas
