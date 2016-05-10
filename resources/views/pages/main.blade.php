@@ -7,11 +7,7 @@
 
 @section('main')
 
-		<section class="main-header">
-			<h1> {!! $title !!} </h1>
-		</section>
-
-		<div class="ad">
+		<div class="ad-main">
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<!-- postlist -->
 			<ins class="adsbygoogle"
@@ -23,6 +19,12 @@
 			(adsbygoogle = window.adsbygoogle || []).push({});
 			</script>
 		</div>
+
+		<section class="main-header">
+			<h1> {!! $title !!} </h1>
+		</section>
+
+
 
 
 

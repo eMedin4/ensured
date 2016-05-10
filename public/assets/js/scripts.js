@@ -322,7 +322,7 @@ $('.launch-menu-collections').on('click', function() {
   		e.stopPropagation();
   	});
 
-  	$('.content').on('click', function(){
+  	$('body').on('click', function(){
       	$('.launch-dd-menu').removeClass('open');
       	$('.dd-menu').removeClass('open-menu');
   	});

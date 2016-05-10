@@ -383,7 +383,7 @@ i.avatar-me-extra {
     top: 46px;
     left: 50%;
     border: 6px solid #000;
-    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #ECECEC #ECECEC;
+    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #F0F6F6 #F0F6F6;
     transform-origin: 0 0;
     transform: rotate(135deg);
     z-index: 100;
@@ -428,7 +428,7 @@ i.avatar-me-extra {
     right: 4px;
     box-shadow: none;
     background: #F7F7F7;
-    background: rgba(234,234,234,0.9);
+    background: rgba(240,246,246,0.96);
     padding: 12px;
     letter-spacing: -0.3px;
 }
@@ -647,6 +647,7 @@ body {
 
   .post-single .post-top {
   	float: left;
+  	margin-top: -3px;
   }
 
   .post-main {
@@ -893,6 +894,10 @@ a.share-twitter:hover {
 	padding-bottom: 20px;
     border-bottom: 1px solid #f7f7f7;
     margin-bottom: 20px;
+}
+
+.ad-main {
+	margin: 20px;
 }
 
 
@@ -1682,6 +1687,7 @@ button.account-btn {
 	    font-size: 22px;
 	    text-align: center;
 	    padding: 0;
+	    top: 5px;
 	}
 
 	article .icon-activity-vote {
